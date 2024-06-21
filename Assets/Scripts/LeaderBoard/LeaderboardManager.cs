@@ -7,6 +7,8 @@ public class LeaderboardManager : MonoBehaviour
 {
      public string leaderboardKey = "test_score";
     public bool test;
+
+    public int testScore;
     [SerializeField] GameObject entry_prefab;
     [SerializeField] GameObject content;
     [SerializeField] List<Entry> entry;
@@ -15,7 +17,7 @@ public class LeaderboardManager : MonoBehaviour
     {
         if (test)
         {
-            LoadLeaderBoard();
+            SubmitScore(testScore);
             test = false;
         }
     }
@@ -79,6 +81,10 @@ public class LeaderboardManager : MonoBehaviour
                     clone.GetComponent<LeaderBoardEntry>().playerScore.text = entry[a].score.ToString();
                 }
             }
+            else if(entry[i].score < score)
+            {
+                entry[i].ChangeScore(score);
+            }
         }
         if(entry.Count == 0)
         {
@@ -103,6 +109,10 @@ public class Entry
     public Entry(string _name, int _score)
     {
         playerName = _name;
+        score = _score;
+    }
+    public void ChangeScore(int _score)
+    {
         score = _score;
     }
 }
