@@ -7,7 +7,6 @@ public class LeaderboardManager : MonoBehaviour
 {
      public string leaderBoardKey = "test_score";
 
-
     private void Update()
     {
     }
