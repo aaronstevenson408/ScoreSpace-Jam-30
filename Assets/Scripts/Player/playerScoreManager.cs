@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerScoreManager : MonoBehaviour
 {
@@ -9,7 +10,11 @@ public class playerScoreManager : MonoBehaviour
     [SerializeField] GameObject floor;
 
     [SerializeField] int finalScore;
+    [SerializeField] Text score;
 
+    private void Awake()
+    {
+    }
     private void Update()
     {
         CalcDistFromFloor();
@@ -25,5 +30,6 @@ public class playerScoreManager : MonoBehaviour
     void CalcScore()
     {
         finalScore = Mathf.RoundToInt((distFromFloor / 100) + (timer / 2));
+        score.text = finalScore.ToString();
     }
 }
