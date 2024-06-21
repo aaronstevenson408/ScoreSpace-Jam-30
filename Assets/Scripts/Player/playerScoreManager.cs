@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class playerScoreManager : MonoBehaviour
+public class PlayerScore : MonoBehaviour
 {
     [SerializeField] float distFromFloor;
     [SerializeField] float timer;
     [SerializeField] GameObject floor;
 
-    [SerializeField] int finalScore;
+    public int finalScore;
     [SerializeField] Text score;
 
     private void Awake()
