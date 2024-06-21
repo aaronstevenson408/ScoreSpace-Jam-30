@@ -8,7 +8,8 @@ public class PlayerManager : MonoBehaviour
     public PlayerMovement playerMovement;
     [HideInInspector]
     public PlayerAnimation playerAnimations;
-
+    public GameObject leftPoint;
+    public GameObject rightPoint;
     [HideInInspector]
     public Rigidbody2D _rb;
 
