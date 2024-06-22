@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]
     public bool playerDead;
     [SerializeField] GameObject playerCamera;
-    CapsuleCollider2D _collider;
+    Collider2D _collider;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
         playerScoreManager = GetComponent<PlayerScore>();
         playerAnimations = GetComponent<PlayerAnimation>();
         _rb = GetComponent<Rigidbody2D>();
-        _collider = GetComponent<CapsuleCollider2D>();
+        _collider = GetComponent<Collider2D>();
     }
 
     private void Update()
