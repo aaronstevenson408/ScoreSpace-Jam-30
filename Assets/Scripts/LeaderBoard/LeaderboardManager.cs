@@ -51,7 +51,7 @@ public class LeaderboardManager : MonoBehaviour
                 LootLockerLeaderboardMember[] members = response.items;
                 for (int i = 0; i < members.Length; i++)
                 {
-                    Debug.Log("Player is: " + members[i].player.name);
+                    Debug.Log("Player is: " + members[i].player.id.ToString());
                     if (members[i].player.name != "")
                     {
                         TryToAddItem(members[i].player.name, members[i].score);
@@ -62,40 +62,41 @@ public class LeaderboardManager : MonoBehaviour
                     }
                        
                 }
-
-            /*   */
             }
         });
     }
     public void TryToAddItem( string name, int score)
     {
-        for (int i = 0; i < entry.Count; i++)
+        Debug.Log("Checking01");
+        bool entryExists = false;
+        if (entry.Count > 0)
         {
-            if(entry[i].playerName != name)
+            foreach (var item in entry)
             {
-                entry.Add(new Entry(name, score));
-                for (int a = 0; a < entry.Count; a++)
+                Debug.Log("Checking");
+                if (item.playerName == name)
                 {
-                    var clone = Instantiate(entry_prefab, content.transform);
-                        clone.GetComponent<LeaderBoardEntry>().playerName.text = entry[a].playerName;
-                    clone.GetComponent<LeaderBoardEntry>().playerScore.text = entry[a].score.ToString();
+                    Debug.Log("Does Exit");
+                    entryExists = true;
+                    if (item.score < score)
+                    {
+                        item.ChangeScore(score);
+                        break;
+                    }
                 }
             }
-            else if(entry[i].score < score)
-            {
-                entry[i].ChangeScore(score);
-            }
         }
-        if(entry.Count == 0)
-        {
-            entry.Add(new Entry(name, score));
-            for (int a = 0; a < entry.Count; a++)
+
+            if (entryExists==false)
             {
-                var clone = Instantiate(entry_prefab, content.transform);
-                clone.GetComponent<LeaderBoardEntry>().playerName.text = entry[a].playerName;
-                clone.GetComponent<LeaderBoardEntry>().playerScore.text = entry[a].score.ToString();
+                Debug.Log("DoesntExits");
+                Entry newSlot = new Entry(name, score);
+               entry.Add(new Entry(name, score));
+                    var clone = Instantiate(entry_prefab, content.transform);
+                    clone.GetComponent<LeaderBoardEntry>().playerName.text = name;
+                    clone.GetComponent<LeaderBoardEntry>().playerScore.text = score.ToString();
             }
-        }
+        
     }
 
 }
