@@ -7,7 +7,7 @@ public class PlayerLoginManager : MonoBehaviour
 {
     void Start()
     {
-         StartCoroutine(Login());
+        StartCoroutine(Login());
     }
     IEnumerator Login()
     {
@@ -22,7 +22,7 @@ public class PlayerLoginManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Could not Start Seassion");
+                Debug.Log("Could not Start Session");
             }
         });
         yield return new WaitWhile(() => done == false);

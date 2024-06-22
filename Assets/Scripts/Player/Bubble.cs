@@ -11,17 +11,17 @@ public class Bubble : MonoBehaviour
 
     void Start()
     {
-        bubbleSprite.localScale = new Vector3(minSize, minSize, minSize);
+        // bubbleSprite.localScale = new Vector3(minSize, minSize, minSize);
     }
 
     // Update is called once per frame
     void Update()
     {
         //bubble grows in size based on time
-        float sizeAmt = GameTime.Instance.GetTime / maxSize;
+        //float sizeAmt = GameTime.Instance.GetTime / maxSize;
         //float sizeAmt = time + minSize;
-        sizeAmt = Mathf.Clamp(sizeAmt, minSize, maxSize);
-        bubbleSprite.localScale = Vector3.one * sizeAmt;
+        // sizeAmt = Mathf.Clamp(sizeAmt, minSize, maxSize);
+        // bubbleSprite.localScale = Vector3.one * sizeAmt;
 
 
 

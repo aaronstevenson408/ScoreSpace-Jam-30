@@ -15,6 +15,6 @@ public class PlayerAnimation : MonoBehaviour
     }
     private void Update()
     {
-        animatorLink.SetBool("IsDead", playerManager.playerDead);
+        //animatorLink.SetBool("IsDead", playerManager.playerDead);
     }
 }
