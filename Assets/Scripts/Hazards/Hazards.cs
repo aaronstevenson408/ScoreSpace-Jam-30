@@ -19,7 +19,6 @@ public class Hazards : MonoBehaviour
     Rigidbody2D _rb;
 
     [Header("Two Point Movement")]
-
     [HideInInspector]
     public GameObject pointA;
     [HideInInspector]
@@ -156,7 +155,6 @@ public class Hazards : MonoBehaviour
             gameObject.transform.Translate(Vector2.down * speed / 100);
         }
     }
-
     public void GoDirection()
     {
         if (goLeft)
@@ -207,7 +205,7 @@ public class Hazards : MonoBehaviour
 public class MovementType: Editor
 {
 
-
+    bool hide;
     private void OnEnable()
     {
         
@@ -217,11 +215,14 @@ public class MovementType: Editor
         var hazards = (Hazards)target;
         hazards.type = this;
         base.OnInspectorGUI();
-
+        EditorGUILayout.BeginHorizontal();
         hazards.goingBetweenTwoPoints = EditorGUILayout.Toggle( "Going Between Two Points",hazards.goingBetweenTwoPoints);
         hazards.usingDropPoint = EditorGUILayout.Toggle("Drop Point",hazards.usingDropPoint);
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.BeginHorizontal();
         hazards.usingGlide = EditorGUILayout.Toggle("Glide", hazards.usingGlide);
         hazards.goingDirection = EditorGUILayout.Toggle("Go Direction", hazards.goingDirection);
+        EditorGUILayout.EndHorizontal();
 
 
         if (hazards.goingBetweenTwoPoints)
