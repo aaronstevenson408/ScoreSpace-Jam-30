@@ -4,17 +4,8 @@ using System.Net;
 using TreeEditor;
 using UnityEngine;
 
-public class VerticalPlatform : MonoBehaviour
+public class VerticalPlatform : Platform
 {
-    //all start offsets should be negative
-    //all end offsets should be positive
-    [SerializeField] private float startOffset;
-    [SerializeField] private float endOffset;
-    [SerializeField] private float speed;
-
-    bool isAtStart;
-    float worldStartPos, worldEndPos;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +21,7 @@ public class VerticalPlatform : MonoBehaviour
             currentYPos + speed * Time.deltaTime :
             currentYPos - speed * Time.deltaTime;
 
-        transform.position = Vector2.up * moveDir;
+        transform.position = new Vector2(transform.position.x, moveDir);
 
         if (transform.position.y <= worldStartPos)
             isAtStart = true;
