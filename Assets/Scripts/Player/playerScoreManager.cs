@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerScore : MonoBehaviour
 {
+    PlayerManager playerManager;
     [SerializeField] float distFromFloor;
     [SerializeField] float timer;
     [SerializeField] GameObject floor;
@@ -14,9 +15,12 @@ public class PlayerScore : MonoBehaviour
 
     private void Awake()
     {
+        playerManager = GetComponent<PlayerManager>();
     }
     private void Update()
     {
+        if (playerManager.playerDead)
+            return;
         CalcDistFromFloor();
         timer += Time.deltaTime;
         CalcScore();
