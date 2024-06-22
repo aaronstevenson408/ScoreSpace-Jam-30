@@ -12,10 +12,12 @@ public class Bubble : MonoBehaviour
     [SerializeField] private bool canGrow;
     [SerializeField] private float minSize = 1;
     [SerializeField] private float maxSize = 5;
-    [SerializeField] private float growSpeed = .02f;
+    [SerializeField] private float growSpeed = 1.5f;
     [SerializeField] private Transform bubbleSprite;
 
     float timer;
+    float slowAmt;
+    bool isSlow = false;
 
     void Awake()
     {
@@ -31,18 +33,42 @@ public class Bubble : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
         //bubble grows in size based on time
-        if (canGrow) Grow();
+        if (canGrow)
+        {
+            if (!isSlow) Grow(timer / maxSize * growSpeed);
+            else Grow(slowAmt);
+        }
     }
 
-    void Grow()
+    void Grow(float amt)
     {
-        timer += Time.deltaTime;
-        float sizeAmt = timer / maxSize * growSpeed;
-        sizeAmt = Mathf.Clamp(sizeAmt, minSize, maxSize);
-        bubbleSprite.localScale = Vector3.one * sizeAmt;
-        //Debug.Log(bubbleSprite.localScale);
+        Debug.Log(amt);
+        amt = Mathf.Clamp(amt, minSize, maxSize);
+        bubbleSprite.localScale = Vector3.one * amt;
 
+    }
+
+    public IEnumerator SlowSpeed(float slowAmt, float slowTime)
+    {
+        //slow bubble growth
+        isSlow = true;
+        Debug.Assert(true, "slow down---------------------------------------");
+        this.slowAmt = slowAmt * growSpeed;
+        yield return new WaitForSeconds(slowTime);
+        isSlow = false;
+        Debug.Assert(true, "slow down end---------------------------------------");
+
+
+    }
+
+    public IEnumerator Invulnerability(float invinsibilityTime)
+    {
+        canGrow = false;
+        yield return new WaitForSeconds(invinsibilityTime);
+        canGrow = true;
+        StopCoroutine("Invulnerability");
     }
 
     public void Pop()
