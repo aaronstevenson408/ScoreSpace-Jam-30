@@ -67,7 +67,7 @@ public class Hazards : MonoBehaviour
             Debug.Log("Going between two points");
             MoveBetweenTwoPoints();
         }
-        else if(usingDropPoint)
+        else if (usingDropPoint)
         {
 
             DropHazard();
@@ -89,13 +89,13 @@ public class Hazards : MonoBehaviour
         if (isAtPointA)
         {
             Debug.Log("Going To B");
-            gameObject.transform.Translate(Vector2.right * speed/100);
+            gameObject.transform.Translate(Vector2.right * speed / 100);
             gameObject.transform.localScale = new Vector2(-1, 1);
         }
         else
         {
             Debug.Log("Going To A");
-            gameObject.transform.Translate(-Vector2.right * speed/100);
+            gameObject.transform.Translate(-Vector2.right * speed / 100);
             gameObject.transform.localScale = new Vector2(1, 1);
         }
 
@@ -110,7 +110,7 @@ public class Hazards : MonoBehaviour
     }
     public void DropHazard()
     {
-        if(teleportedToPoint == false)
+        if (teleportedToPoint == false)
         {
             gameObject.transform.position = dropPoint.transform.position;
             teleportedToPoint = true;
@@ -136,7 +136,8 @@ public class Hazards : MonoBehaviour
             }
             gameObject.transform.Translate(Vector2.up * speed / 100);
 
-        } else if (glideDown)
+        }
+        else if (glideDown)
         {
             if (!teleportedToPoint)
             {
@@ -159,7 +160,8 @@ public class Hazards : MonoBehaviour
         if (goLeft)
         {
             gameObject.transform.Translate(-Vector2.right * speed / 100);
-        } else if (GoRight)
+        }
+        else if (GoRight)
         {
             gameObject.transform.Translate(Vector2.right * speed / 100);
         }
@@ -178,9 +180,10 @@ public class Hazards : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponentInParent<PlayerManager>().Dead();
+            WorldManager.Instance.End();
         }
     }
 
@@ -201,13 +204,13 @@ public class Hazards : MonoBehaviour
 }
 
 [CustomEditor(typeof(Hazards))]
-public class MovementType: Editor
+public class MovementType : Editor
 {
 
     bool hide;
     private void OnEnable()
     {
-        
+
     }
     public override void OnInspectorGUI()
     {
@@ -215,8 +218,8 @@ public class MovementType: Editor
         hazards.type = this;
         base.OnInspectorGUI();
         EditorGUILayout.BeginHorizontal();
-        hazards.goingBetweenTwoPoints = EditorGUILayout.Toggle( "Going Between Two Points",hazards.goingBetweenTwoPoints);
-        hazards.usingDropPoint = EditorGUILayout.Toggle("Drop Point",hazards.usingDropPoint);
+        hazards.goingBetweenTwoPoints = EditorGUILayout.Toggle("Going Between Two Points", hazards.goingBetweenTwoPoints);
+        hazards.usingDropPoint = EditorGUILayout.Toggle("Drop Point", hazards.usingDropPoint);
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.BeginHorizontal();
         hazards.usingGlide = EditorGUILayout.Toggle("Glide", hazards.usingGlide);
@@ -225,19 +228,20 @@ public class MovementType: Editor
 
 
         if (hazards.goingBetweenTwoPoints)
-            {
-            hazards.pointA = (GameObject)EditorGUILayout.ObjectField("Point A", hazards.pointA, typeof(GameObject),true);
-            hazards.pointB = (GameObject)EditorGUILayout.ObjectField("Point B", hazards.pointB,typeof(GameObject),true);
+        {
+            hazards.pointA = (GameObject)EditorGUILayout.ObjectField("Point A", hazards.pointA, typeof(GameObject), true);
+            hazards.pointB = (GameObject)EditorGUILayout.ObjectField("Point B", hazards.pointB, typeof(GameObject), true);
             hazards.speed = EditorGUILayout.FloatField("Speed", hazards.speed);
-        } else if (hazards.usingDropPoint)
+        }
+        else if (hazards.usingDropPoint)
         {
             hazards.dropPoint = (GameObject)EditorGUILayout.ObjectField("DropPoint", hazards.dropPoint, typeof(GameObject), true);
             hazards._gravity = EditorGUILayout.FloatField("Gravity", hazards._gravity);
         }
-        else if(hazards.usingGlide)
+        else if (hazards.usingGlide)
         {
-            hazards.glideDown = EditorGUILayout.Toggle("Glide Down",hazards.glideDown);
-            hazards.glideUp = EditorGUILayout.Toggle("Glide Up",hazards.glideUp);
+            hazards.glideDown = EditorGUILayout.Toggle("Glide Down", hazards.glideDown);
+            hazards.glideUp = EditorGUILayout.Toggle("Glide Up", hazards.glideUp);
 
             hazards.pointA = (GameObject)EditorGUILayout.ObjectField("Point A", hazards.pointA, typeof(GameObject), true);
             hazards.pointB = (GameObject)EditorGUILayout.ObjectField("Point B", hazards.pointB, typeof(GameObject), true);
@@ -246,12 +250,13 @@ public class MovementType: Editor
             hazards.GoRight = EditorGUILayout.Toggle("Go right", hazards.GoRight);
 
             hazards.speed = EditorGUILayout.FloatField("Speed", hazards.speed);
-        } else if (hazards.goingDirection)
+        }
+        else if (hazards.goingDirection)
         {
             hazards.goLeft = EditorGUILayout.Toggle("Go left", hazards.goLeft);
             hazards.GoRight = EditorGUILayout.Toggle("Go right", hazards.GoRight);
             hazards.speed = EditorGUILayout.FloatField("Speed", hazards.speed);
         }
     }
-   
+
 }
