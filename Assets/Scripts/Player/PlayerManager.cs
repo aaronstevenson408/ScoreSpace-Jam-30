@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerAnimation playerAnimations;
     [HideInInspector]
     public Rigidbody2D _rb;
+    Bubble bubble;
 
     [SerializeField] LeaderboardManager leaderBoard;
 
@@ -23,6 +24,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+        bubble = GetComponentInChildren<Bubble>();
         playerMovement = GetComponent<PlayerMovement>();
         playerScoreManager = GetComponent<PlayerScore>();
         playerAnimations = GetComponent<PlayerAnimation>();
@@ -47,6 +49,16 @@ public class PlayerManager : MonoBehaviour
         _rb.gravityScale = 1;
         _collider.enabled = false;
         leaderBoard.SubmitScore(playerScoreManager.finalScore);
+        bubble.Pop();
         playerDead = true;
+    }
+
+    public void Invulnerability(float time)
+    {
+        time -= Time.deltaTime;
+        if(time> 0)
+        {
+            _collider.enabled = false;
+        }
     }
 }

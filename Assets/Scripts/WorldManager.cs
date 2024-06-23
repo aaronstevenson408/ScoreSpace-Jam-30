@@ -15,12 +15,16 @@ public class WorldManager : MonoBehaviour
 
     [Header("Time")]
     [SerializeField] private float startTime = 40;
-    [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private Text timeText;
     [SerializeField] private bool canDecreaseTime = false;
 
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private GameObject playerUICanvas;
+
+
+    [Header("Test")]
+    public float timeLeft;
 
     private GameState gameState = GameState.START;
     public float timer;
@@ -40,8 +44,8 @@ public class WorldManager : MonoBehaviour
     void Update()
     {
         if (canDecreaseTime)
-            DecreaseTime();
-
+           // DecreaseTime();
+        test();
     }
 
     public void DecreaseTime()
@@ -69,5 +73,27 @@ public class WorldManager : MonoBehaviour
         //leader board stuff
         //end screen ui
 
+    }
+
+    public void IncreaseTime(float timeIncreased)
+    {
+        timer += timeIncreased;
+    }
+
+    void test()
+    {
+        if(timer > 0)
+        {
+            timer -= Time.deltaTime;
+            Timer(timer);
+        }
+    }
+
+    void Timer(float currentTime)
+    {
+        currentTime += 1;
+        float min = Mathf.FloorToInt(currentTime / 60);
+        float sec = Mathf.FloorToInt(currentTime % 60);
+        timeText.text = string.Format("{0:00} : {1:00}", min, sec);
     }
 }
