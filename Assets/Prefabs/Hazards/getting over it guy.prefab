@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1093963652781129743}
   - component: {fileID: 870314873182896363}
-  - component: {fileID: 2974739643721515681}
   - component: {fileID: 4783509710422426886}
   - component: {fileID: 8414276403967185051}
-  m_Layer: 0
+  - component: {fileID: 2297703122360341552}
+  m_Layer: 7
   m_Name: getting over it guy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &870314873182896363
 SpriteRenderer:
@@ -87,18 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2974739643721515681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8230814190351514235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b0cce24cc899434fafa1c519b01ac99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &4783509710422426886
 Rigidbody2D:
   serializedVersion: 4
@@ -114,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -125,7 +113,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!60 &8414276403967185051
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -181,3 +169,32 @@ PolygonCollider2D:
       - {x: 1.8000001, y: 0.8}
       - {x: 1.6, y: 1.4}
   m_UseDelaunayMesh: 0
+--- !u!114 &2297703122360341552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8230814190351514235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6cd02e0133b23419a6280c45a855bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenView: {x: 0, y: 0, z: 0}
+  usingDropPoint: 1
+  goingBetweenTwoPoints: 0
+  usingGlide: 0
+  goingDirection: 0
+  type: {fileID: 0}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
+  speed: 0
+  isAtPointA: 0
+  dropPoint: {fileID: 0}
+  _gravity: 1
+  glideUp: 0
+  glideDown: 0
+  spawnPoint: {fileID: 0}
+  goLeft: 0
+  GoRight: 0

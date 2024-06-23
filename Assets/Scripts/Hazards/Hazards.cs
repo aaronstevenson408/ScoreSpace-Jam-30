@@ -5,6 +5,9 @@ using UnityEditor;
 
 public class Hazards : MonoBehaviour
 {
+    Camera camera;
+    Vector3 screenView;
+
     [HideInInspector]
     public bool usingDropPoint;
     [HideInInspector]
@@ -57,10 +60,12 @@ public class Hazards : MonoBehaviour
 
     private void Awake()
     {
+        camera = GameObject.Find("Main Camera").GetComponent<Camera>();
         _rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
+        CameraViewToScreen();
         if (goingBetweenTwoPoints)
         {
             usingDropPoint = false;
@@ -110,11 +115,6 @@ public class Hazards : MonoBehaviour
     }
     public void DropHazard()
     {
-        if(teleportedToPoint == false)
-        {
-            gameObject.transform.position = dropPoint.transform.position;
-            teleportedToPoint = true;
-        }
         _rb.gravityScale = _gravity;
     }
     public void Gliding()
@@ -176,6 +176,17 @@ public class Hazards : MonoBehaviour
         }
 
     }
+
+    public void CameraViewToScreen()
+    {
+        screenView = camera.WorldToViewportPoint(transform.position);
+        if (screenView.y < 0)
+        {
+            SelfDestruct();
+            Debug.Log("Destroyed");
+        }
+
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player")
@@ -231,7 +242,6 @@ public class MovementType: Editor
             hazards.speed = EditorGUILayout.FloatField("Speed", hazards.speed);
         } else if (hazards.usingDropPoint)
         {
-            hazards.dropPoint = (GameObject)EditorGUILayout.ObjectField("DropPoint", hazards.dropPoint, typeof(GameObject), true);
             hazards._gravity = EditorGUILayout.FloatField("Gravity", hazards._gravity);
         }
         else if(hazards.usingGlide)
