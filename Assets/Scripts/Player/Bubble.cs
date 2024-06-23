@@ -73,8 +73,11 @@ public class Bubble : MonoBehaviour
 
     public void Pop()
     {
-        bubbleSprite.gameObject.SetActive(false);
-        bubbleSprite.localScale = new Vector3(minSize, minSize, minSize);
+        if (bubbleSprite != null)
+        {
+            bubbleSprite.gameObject.SetActive(false);
+            bubbleSprite.localScale = new Vector3(minSize, minSize, minSize);
+        }
         WorldManager.Instance.End();
         //lose
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerScore : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlayerScore : MonoBehaviour
     [SerializeField] GameObject floor;
 
     public int finalScore;
-    [SerializeField] Text score;
+    [SerializeField] TextMeshProUGUI score;
 
     private void Awake()
     {

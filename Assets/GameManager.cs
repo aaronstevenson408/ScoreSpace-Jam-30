@@ -18,21 +18,16 @@ public class GameManager : MonoBehaviour
     public bool isInSkyStage;
     public bool isInSpaceStage;
 
-    bool calledStart = false;
     ScreenPositions screenPositions;
 
     private void Awake()
     {
         screenPositions = GameObject.Find("Main Camera").GetComponent<ScreenPositions>();
     }
-    private void Update()
+    private void Start()
     {
-        if(player.GetComponent<PlayerManager>().playerScoreManager.finalScore > 0 && !calledStart)
-        {
-            SpawnEnemy();
-            SpawnItems();
-            calledStart= true;
-        }
+        SpawnEnemy();
+        SpawnItems();
     }
     private void SpawnEnemy()
     {
@@ -43,12 +38,12 @@ public class GameManager : MonoBehaviour
         if (spawnDirection == 0)
         {
             //Spawn Left Side
-            spawnPosition.x = player.transform.position.x - screenPositions.leftSide;
+            spawnPosition.x = screenPositions.leftSide;
         }
         else
         {
             //Spawn Right Side
-            spawnPosition.x = player.transform.position.x + screenPositions.rightSide;
+            spawnPosition.x = screenPositions.rightSide;
         }
         GameObject enemy = null;
         if (isInFloorStage)
@@ -70,54 +65,35 @@ public class GameManager : MonoBehaviour
         if (enemy != null)
         {
             Hazards enemyManager = null;
-            if(enemy.transform.parent != null)
+            if (enemy.transform.parent != null)
             {
                 enemyManager = enemy.GetComponentInChildren<Hazards>();
             }
             else
             {
-                 enemyManager = enemy.GetComponent<Hazards>();
+                enemyManager = enemy.GetComponent<Hazards>();
             }
 
             Debug.Log(enemyManager.gameObject);
             if (enemyManager.usingDropPoint)
             {
-                enemy.transform.position = new Vector3(player.transform.position.x  + (Random.Range(-5, 5)), enemy.transform.position.y, enemy.transform.position.z);
+                enemy.transform.position = new Vector3(Random.Range(screenPositions.leftSide, screenPositions.rightSide), enemy.transform.position.y, enemy.transform.position.z);
             }
             else if (enemyManager.goingBetweenTwoPoints)
             {
-                if (enemyManager.horizontalMovement)
+                if (spawnDirection == 0)
                 {
-                    if (spawnDirection == 0)
-                    {
-                        //Spawn Left Side
-                        enemyManager.pointA.transform.position = enemy.transform.position;
-                        enemyManager.pointB.transform.position = new Vector3(enemyManager.pointA.transform.position.x + (Random.Range(10, 30)), enemyManager.pointA.transform.position.y, enemyManager.pointA.transform.position.z);
+                    //Spawn Left Side
+                    enemyManager.pointA.transform.position = enemy.transform.position;
+                    enemyManager.pointB.transform.position = new Vector3(enemyManager.pointA.transform.position.x + (Random.Range(10, 30)), enemyManager.pointA.transform.position.y, enemyManager.pointA.transform.position.z);
 
-                    }
-                    else
-                    {
-                        enemyManager.pointB.transform.position = enemy.transform.position;
-                        enemyManager.pointA.transform.position = new Vector3(enemyManager.pointB.transform.position.x - (Random.Range(10, 30)), enemyManager.pointB.transform.position.y, enemyManager.pointB.transform.position.z);
-
-                    }
-                } else if (enemyManager.verticalMovement)
-                {
-                    if (spawnDirection == 0)
-                    {
-                        //Spawn Left Side
-                        enemyManager.pointA.transform.position = enemy.transform.position;
-                        enemyManager.pointB.transform.position = new Vector3 (enemyManager.pointA.transform.position.x, (enemyManager.pointA.transform.position.y + Random.Range(10, 30)), enemyManager.pointA.transform.position.z);
-
-                    }
-                    else
-                    {
-                        enemyManager.pointB.transform.position = enemy.transform.position;
-                        enemyManager.pointA.transform.position = new Vector3(enemyManager.pointA.transform.position.x, (enemyManager.pointA.transform.position.y - Random.Range(10, 30)), enemyManager.pointB.transform.position.z);
-
-                    }
                 }
-              
+                else
+                {
+                    enemyManager.pointB.transform.position = enemy.transform.position;
+                    enemyManager.pointA.transform.position = new Vector3(enemyManager.pointB.transform.position.x - (Random.Range(10, 30)), enemyManager.pointB.transform.position.y, enemyManager.pointB.transform.position.z);
+
+                }
             }
             else if (enemyManager.usingGlide)
             {
@@ -168,17 +144,17 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        
+
         Invoke("SpawnEnemy", enemySpawnRate);
     }
     private void SpawnItems()
     {
         Vector3 spawnPosition = new Vector3();
 
-            spawnPosition.y = screenPositions.topSide;
-            spawnPosition.x = Random.Range(screenPositions.leftSide, screenPositions.rightSide);
-                var RandomItem = Random.Range(0, items.Count);
-       
+        spawnPosition.y = screenPositions.topSide;
+        spawnPosition.x = Random.Range(screenPositions.leftSide, screenPositions.rightSide);
+        var RandomItem = Random.Range(0, items.Count);
+
 
         foreach (ItemDropChance item in items)
         {
@@ -200,7 +176,7 @@ public class GameManager : MonoBehaviour
     {
         public GameObject item;
         public int dropChanceOutOf100;
-        public ItemDropChance(GameObject _item,int _dropChance)
+        public ItemDropChance(GameObject _item, int _dropChance)
         {
             item = _item;
             dropChanceOutOf100 = _dropChance;

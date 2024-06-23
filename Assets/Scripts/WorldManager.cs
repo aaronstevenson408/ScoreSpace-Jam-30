@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public enum GameState { START, RUNNING, END }
 
@@ -12,9 +13,14 @@ public class WorldManager : MonoBehaviour
     private static WorldManager instance;
     public static WorldManager Instance { get { return instance; } }
 
+    [Header("Time")]
     [SerializeField] private float startTime = 40;
-    [SerializeField] private Text timeText;
+    [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private bool canDecreaseTime = false;
+
+    [Header("Game Over")]
+    [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private GameObject playerUICanvas;
 
     private GameState gameState = GameState.START;
     private float timer;
@@ -57,6 +63,8 @@ public class WorldManager : MonoBehaviour
     {
         gameState = GameState.END;
         Debug.Log("Game Ended");
+        playerUICanvas.SetActive(false);
+        gameOverCanvas.SetActive(true);
 
         //leader board stuff
         //end screen ui
