@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerScore playerScoreManager;
     [HideInInspector]
     public PlayerAnimation playerAnimations;
+    public GameManager gameManager;
     public GameObject leftPoint;
     public GameObject rightPoint;
     [HideInInspector]
@@ -21,10 +22,11 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]
     public bool playerDead;
     [SerializeField] GameObject playerCamera;
+    Camera playerCam;
     Collider2D _collider;
-
     private void Awake()
     {
+        playerCam = playerCamera.GetComponent<Camera>();
         playerMovement = GetComponent<PlayerMovement>();
         playerScoreManager = GetComponent<PlayerScore>();
         playerAnimations = GetComponent<PlayerAnimation>();
@@ -37,13 +39,13 @@ public class PlayerManager : MonoBehaviour
         if (playerDead)
             return;
         SyncCamera();
+
     }
 
     void SyncCamera()
     {
         playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y, playerCamera.transform.position.z);
     }
-
     public void Dead()
     {
         _rb.gravityScale = 1;
@@ -51,4 +53,6 @@ public class PlayerManager : MonoBehaviour
         leaderBoard.SubmitScore(playerScoreManager.finalScore);
         playerDead = true;
     }
+
+   
 }

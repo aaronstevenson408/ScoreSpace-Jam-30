@@ -74,8 +74,9 @@ GameObject:
   - component: {fileID: 870314873182896363}
   - component: {fileID: 4783509710422426886}
   - component: {fileID: 8414276403967185051}
-  - component: {fileID: 151446714987191866}
-  m_Layer: 0
+
+  - component: {fileID: 2297703122360341552}
+  m_Layer: 7
   m_Name: getting over it guy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +98,7 @@ Transform:
   - {fileID: 2361297320092197013}
   - {fileID: 1300622396002885169}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &870314873182896363
 SpriteRenderer:
@@ -166,7 +167,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -177,7 +178,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!60 &8414276403967185051
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -233,7 +234,7 @@ PolygonCollider2D:
       - {x: 1.8000001, y: 0.8}
       - {x: 1.6, y: 1.4}
   m_UseDelaunayMesh: 0
---- !u!114 &151446714987191866
+--- !u!114 &2297703122360341552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,7 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6cd02e0133b23419a6280c45a855bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usingDropPoint: 0
+  screenView: {x: 0, y: 0, z: 0}
+  usingDropPoint: 1
   goingBetweenTwoPoints: 0
   usingGlide: 0
   goingDirection: 0
@@ -255,7 +257,7 @@ MonoBehaviour:
   speed: 0
   isAtPointA: 0
   dropPoint: {fileID: 0}
-  _gravity: 0
+  _gravity: 1
   glideUp: 0
   glideDown: 0
   spawnPoint: {fileID: 0}
