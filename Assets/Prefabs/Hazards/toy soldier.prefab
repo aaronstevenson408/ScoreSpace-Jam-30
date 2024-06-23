@@ -72,10 +72,10 @@ GameObject:
   m_Component:
   - component: {fileID: 609920517207892077}
   - component: {fileID: 5377882814565987396}
+  - component: {fileID: 6861447196040753401}
   - component: {fileID: 2240458934481934390}
   - component: {fileID: 1055476617677247218}
-  - component: {fileID: 5786425347267132757}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: toy soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5361271172162421243}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -97,7 +97,7 @@ Transform:
   - {fileID: 3758709511891234056}
   - {fileID: 5112411547420642158}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5377882814565987396
 SpriteRenderer:
@@ -151,6 +151,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6861447196040753401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5361271172162421243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6cd02e0133b23419a6280c45a855bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usingDropPoint: 0
+  goingBetweenTwoPoints: 1
+  usingGlide: 0
+  goingDirection: 0
+  type: {fileID: 0}
+  pointA: {fileID: 836881343094172194}
+  pointB: {fileID: 3100471562085641336}
+  speed: 3
+  isAtPointA: 0
+  dropPoint: {fileID: 0}
+  _gravity: 0
+  glideUp: 0
+  glideDown: 0
+  spawnPoint: {fileID: 0}
+  goLeft: 0
+  GoRight: 0
 --- !u!50 &2240458934481934390
 Rigidbody2D:
   serializedVersion: 4
@@ -166,7 +194,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -177,7 +205,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 5
+  m_Constraints: 0
 --- !u!60 &1055476617677247218
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -234,32 +262,3 @@ PolygonCollider2D:
       - {x: 0.2, y: 0.8}
       - {x: 0.3, y: 0.90000004}
   m_UseDelaunayMesh: 0
---- !u!114 &5786425347267132757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5361271172162421243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab6cd02e0133b23419a6280c45a855bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  screenView: {x: 0, y: 0, z: 0}
-  usingDropPoint: 1
-  goingBetweenTwoPoints: 0
-  usingGlide: 0
-  goingDirection: 0
-  type: {fileID: 0}
-  pointA: {fileID: 0}
-  pointB: {fileID: 0}
-  speed: 0
-  isAtPointA: 0
-  dropPoint: {fileID: 0}
-  _gravity: 1
-  glideUp: 0
-  glideDown: 0
-  spawnPoint: {fileID: 0}
-  goLeft: 0
-  GoRight: 0

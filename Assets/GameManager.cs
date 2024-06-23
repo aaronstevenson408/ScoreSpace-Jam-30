@@ -18,8 +18,6 @@ public class GameManager : MonoBehaviour
     public bool isInSkyStage;
     public bool isInSpaceStage;
 
-    public Vector2 min_maxX;
-    public Vector2 min_maxY;
     private void Start()
     {
         SpawnEnemy();
@@ -77,10 +75,10 @@ public class GameManager : MonoBehaviour
     {
         Vector3 spawnPosition = new Vector3();
 
-            spawnPosition.y = player.transform.position.y + min_maxY.y;
+            spawnPosition.y = player.transform.position.y + 9.5f;
 
-                var leftSpawnPositionX = player.transform.position.x - min_maxX.x;
-                var rightSpawnPositionX = player.transform.position.x + min_maxX.y;
+                var leftSpawnPositionX = player.transform.position.x - 10.5f;
+                var rightSpawnPositionX = player.transform.position.x + 10.5f;
             spawnPosition.x = Random.Range(leftSpawnPositionX, rightSpawnPositionX);
                 var RandomItem = Random.Range(0, items.Count);
        
