@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public List<ItemDropChance> items;
     public float enemySpawnRate;
     public float itemSpawnRate;
-    [SerializeField] GameObject player;
+    public GameObject player;
 
     [Header("Flag")]
     public bool isInFloorStage;
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
             var RandomEnemy = Random.Range(0, spaceEnemies.Count);
             enemy = Instantiate(spaceEnemies[RandomEnemy], spawnPosition, Quaternion.identity);
         }
-        Debug.Log(enemy);
+        //Debug.Log(enemy);
         if (enemy != null)
         {
             Hazards enemyManager = null;

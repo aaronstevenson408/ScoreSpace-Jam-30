@@ -201,7 +201,7 @@ public class Hazards : MonoBehaviour
         if (screenView.y < 0)
         {
             SelfDestruct();
-            Debug.Log("Destroyed");
+           // Debug.Log("Destroyed");
         }
 
     }
