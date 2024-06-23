@@ -64,17 +64,16 @@ public class Hazards : MonoBehaviour
         if (goingBetweenTwoPoints)
         {
             usingDropPoint = false;
-            Debug.Log("Going between two points");
+            //Debug.Log("Going between two points");
             MoveBetweenTwoPoints();
         }
         else if (usingDropPoint)
         {
-
             DropHazard();
         }
         else if (usingGlide)
         {
-            Debug.Log("isGliding");
+            //Debug.Log("isGliding");
             Gliding();
         }
         else if (goingDirection)
@@ -121,11 +120,6 @@ public class Hazards : MonoBehaviour
     {
         if (glideUp)
         {
-            if (!teleportedToPoint)
-            {
-                gameObject.transform.position = pointA.transform.position;
-                teleportedToPoint = true;
-            }
             if (goLeft)
             {
                 gameObject.transform.Translate(-Vector2.right * speed / 100);
@@ -139,11 +133,6 @@ public class Hazards : MonoBehaviour
         }
         else if (glideDown)
         {
-            if (!teleportedToPoint)
-            {
-                gameObject.transform.position = pointA.transform.position;
-                teleportedToPoint = true;
-            }
             if (goLeft)
             {
                 gameObject.transform.Translate(-Vector2.right * speed / 100);
@@ -242,9 +231,6 @@ public class MovementType : Editor
         {
             hazards.glideDown = EditorGUILayout.Toggle("Glide Down", hazards.glideDown);
             hazards.glideUp = EditorGUILayout.Toggle("Glide Up", hazards.glideUp);
-
-            hazards.pointA = (GameObject)EditorGUILayout.ObjectField("Point A", hazards.pointA, typeof(GameObject), true);
-            hazards.pointB = (GameObject)EditorGUILayout.ObjectField("Point B", hazards.pointB, typeof(GameObject), true);
 
             hazards.goLeft = EditorGUILayout.Toggle("Go left", hazards.goLeft);
             hazards.GoRight = EditorGUILayout.Toggle("Go right", hazards.GoRight);
