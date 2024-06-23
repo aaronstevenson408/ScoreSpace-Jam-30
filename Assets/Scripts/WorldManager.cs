@@ -23,7 +23,7 @@ public class WorldManager : MonoBehaviour
     [SerializeField] private GameObject playerUICanvas;
 
     private GameState gameState = GameState.START;
-    private float timer;
+    public float timer;
 
     public float GetTime
     {
