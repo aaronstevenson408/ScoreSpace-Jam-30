@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> spaceEnemies;
 
     public List<ItemDropChance> items;
-    public int enemySpawnRate;
-    public int itemSpawnRate;
+    public float enemySpawnRate;
+    public float itemSpawnRate;
     [SerializeField] GameObject player;
 
     [Header("Flag")]
@@ -86,19 +86,38 @@ public class GameManager : MonoBehaviour
             }
             else if (enemyManager.goingBetweenTwoPoints)
             {
-                if (spawnDirection == 0)
+                if (enemyManager.horizontalMovement)
                 {
-                    //Spawn Left Side
-                    enemyManager.pointA.transform.position = enemy.transform.position;
-                    enemyManager.pointB.transform.position = new Vector3(enemyManager.pointA.transform.position.x + (Random.Range(10, 30)), enemyManager.pointA.transform.position.y, enemyManager.pointA.transform.position.z);
+                    if (spawnDirection == 0)
+                    {
+                        //Spawn Left Side
+                        enemyManager.pointA.transform.position = enemy.transform.position;
+                        enemyManager.pointB.transform.position = new Vector3(enemyManager.pointA.transform.position.x + (Random.Range(10, 30)), enemyManager.pointA.transform.position.y, enemyManager.pointA.transform.position.z);
 
-                }
-                else
+                    }
+                    else
+                    {
+                        enemyManager.pointB.transform.position = enemy.transform.position;
+                        enemyManager.pointA.transform.position = new Vector3(enemyManager.pointB.transform.position.x - (Random.Range(10, 30)), enemyManager.pointB.transform.position.y, enemyManager.pointB.transform.position.z);
+
+                    }
+                } else if (enemyManager.verticalMovement)
                 {
-                    enemyManager.pointB.transform.position = enemy.transform.position;
-                    enemyManager.pointA.transform.position = new Vector3(enemyManager.pointB.transform.position.x - (Random.Range(10, 30)), enemyManager.pointB.transform.position.y, enemyManager.pointB.transform.position.z);
+                    if (spawnDirection == 0)
+                    {
+                        //Spawn Left Side
+                        enemyManager.pointA.transform.position = enemy.transform.position;
+                        enemyManager.pointB.transform.position = new Vector3 (enemyManager.pointA.transform.position.x, (enemyManager.pointA.transform.position.y + Random.Range(10, 30)), enemyManager.pointA.transform.position.z);
 
+                    }
+                    else
+                    {
+                        enemyManager.pointB.transform.position = enemy.transform.position;
+                        enemyManager.pointA.transform.position = new Vector3(enemyManager.pointA.transform.position.x, (enemyManager.pointA.transform.position.y - Random.Range(10, 30)), enemyManager.pointB.transform.position.z);
+
+                    }
                 }
+              
             }
             else if (enemyManager.usingGlide)
             {
