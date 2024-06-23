@@ -447,6 +447,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e24a10b302e5f49a77b2976a1f8419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  background: {fileID: 446445632}
+  groundLevel:
+    yPoisitionOfScene: 0
+    yLevelToNewScene: 0
+  skyLevel:
+    yPoisitionOfScene: 0
+    yLevelToNewScene: 0
+  SpaceLevel:
+    yPoisitionOfScene: 0
+    yLevelToNewScene: 0
+  speed: 0
 --- !u!1 &200298416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,8 +2050,6 @@ MonoBehaviour:
   playerScoreManager: {fileID: 0}
   playerAnimations: {fileID: 0}
   gameManager: {fileID: 143851609}
-  leftPoint: {fileID: 1503528950}
-  rightPoint: {fileID: 276800421}
   _rb: {fileID: 0}
   leaderBoard: {fileID: 365602823}
   playerDead: 0
