@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3843040193511273748}
   - component: {fileID: 8347041262665114806}
   - component: {fileID: 7150362757795164405}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 3258195484382803836}
   - component: {fileID: 7992265816332214223}
   - component: {fileID: 1678450165578071968}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: InvulnerablePickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
