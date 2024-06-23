@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6224314786281577715}
   - component: {fileID: 6059104684713038131}
   - component: {fileID: 2888991929305728610}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SoapPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5510772025930894278}
   - component: {fileID: 8899108132547487032}
   - component: {fileID: 8224592487218680390}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

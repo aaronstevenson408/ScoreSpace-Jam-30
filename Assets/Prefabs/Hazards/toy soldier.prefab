@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6549026824889126387}
   - component: {fileID: 4250863889646837007}
   - component: {fileID: 8990072748823218238}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: toy soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,8 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6cd02e0133b23419a6280c45a855bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnemy: 0
-  isPlatform: 0
   usingDropPoint: 1
   goingBetweenTwoPoints: 0
   usingGlide: 0
@@ -108,8 +106,6 @@ MonoBehaviour:
   type: {fileID: 0}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
-  horizontalMovement: 0
-  verticalMovement: 0
   speed: 3
   isAtPointA: 0
   dropPoint: {fileID: 0}
@@ -141,7 +137,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -161,7 +157,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

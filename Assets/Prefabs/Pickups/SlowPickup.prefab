@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6033726577816374852}
   - component: {fileID: 5535671141109300280}
   - component: {fileID: 8038950719092898259}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 4398337531160502590}
   - component: {fileID: 1714785510681819683}
   - component: {fileID: 2346143050365899518}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SlowPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
