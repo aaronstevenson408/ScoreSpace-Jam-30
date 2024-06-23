@@ -18,8 +18,12 @@ public class GameManager : MonoBehaviour
     public bool isInSkyStage;
     public bool isInSpaceStage;
 
-    public Vector2 min_maxX;
-    public Vector2 min_maxY;
+    ScreenPositions screenPositions;
+
+    private void Awake()
+    {
+        screenPositions = GameObject.Find("Main Camera").GetComponent<ScreenPositions>();
+    }
     private void Start()
     {
         SpawnEnemy();
@@ -29,59 +33,126 @@ public class GameManager : MonoBehaviour
     {
         Vector3 spawnPosition = new Vector3();
 
-            spawnPosition.y = player.transform.position.y + 9.5f;
-
-            int spawnDirection = Random.Range(0, 2);
-            if(spawnDirection == 0)
+        spawnPosition.y = screenPositions.topSide;
+        int spawnDirection = Random.Range(0, 2);
+        if (spawnDirection == 0)
+        {
+            //Spawn Left Side
+            spawnPosition.x = screenPositions.leftSide;
+        }
+        else
+        {
+            //Spawn Right Side
+            spawnPosition.x = screenPositions.rightSide;
+        }
+        GameObject enemy = null;
+        if (isInFloorStage)
+        {
+            var RandomEnemy = Random.Range(0, floorEnemies.Count);
+            enemy = Instantiate(floorEnemies[RandomEnemy], spawnPosition, Quaternion.identity);
+        }
+        else if (isInSkyStage)
+        {
+            var RandomEnemy = Random.Range(0, skyEmemies.Count);
+            enemy = Instantiate(skyEmemies[RandomEnemy], spawnPosition, Quaternion.identity);
+        }
+        else if (isInSpaceStage)
+        {
+            var RandomEnemy = Random.Range(0, spaceEnemies.Count);
+            enemy = Instantiate(spaceEnemies[RandomEnemy], spawnPosition, Quaternion.identity);
+        }
+        Debug.Log(enemy);
+        if (enemy != null)
+        {
+            Hazards enemyManager = null;
+            if(enemy.transform.parent != null)
             {
-                //Spawn Left Side
-                spawnPosition.x = player.transform.position.x - 10.5f;
+                enemyManager = enemy.GetComponentInChildren<Hazards>();
             }
             else
             {
-                //Spawn Right Side
-                spawnPosition.x = player.transform.position.x + 10.5f;
+                 enemyManager = enemy.GetComponent<Hazards>();
             }
 
-            if (isInFloorStage)
+            Debug.Log(enemyManager.gameObject);
+            if (enemyManager.usingDropPoint)
             {
-                var RandomEnemy = Random.Range(0, floorEnemies.Count);
-                var enemy = Instantiate(floorEnemies[RandomEnemy], spawnPosition, Quaternion.identity);
-                /*    var enemyManager = enemy.GetComponent<Hazards>();
-                    if (enemyManager.usingDropPoint)
-                    {
-
-                    } else if (enemyManager.goingBetweenTwoPoints)
-                    {
-
-                    }
-                    else if (enemyManager.usingGlide)
-                    {
-
-                    }
-                    else if (enemyManager.goingDirection)
-                    {
-
-                    }
-                } else if (isInSkyStage)
+                enemy.transform.position = new Vector3(Random.Range(screenPositions.leftSide, screenPositions.rightSide), enemy.transform.position.y, enemy.transform.position.z);
+            }
+            else if (enemyManager.goingBetweenTwoPoints)
+            {
+                if (spawnDirection == 0)
                 {
+                    //Spawn Left Side
+                    enemyManager.pointA.transform.position = enemy.transform.position;
+                    enemyManager.pointB.transform.position = new Vector3(enemyManager.pointA.transform.position.x + (Random.Range(10, 30)), enemyManager.pointA.transform.position.y, enemyManager.pointA.transform.position.z);
 
                 }
-                else if (isInSpaceStage)
+                else
                 {
-                */
+                    enemyManager.pointB.transform.position = enemy.transform.position;
+                    enemyManager.pointA.transform.position = new Vector3(enemyManager.pointB.transform.position.x - (Random.Range(10, 30)), enemyManager.pointB.transform.position.y, enemyManager.pointB.transform.position.z);
+
+                }
+            }
+            else if (enemyManager.usingGlide)
+            {
+                var chooseDirection = Random.Range(0, 2);
+                if (spawnDirection == 0)
+                {
+                    //Spawn Left Side
+                    enemyManager.goLeft = false;
+                    enemyManager.GoRight = true;
+                    enemy.transform.localScale = new Vector3(-1, enemy.transform.localScale.y, enemy.transform.localScale.z);
+                }
+                else
+                {
+                    //Spawn Right Side
+                    enemyManager.goLeft = true;
+                    enemyManager.GoRight = false;
+                    enemy.transform.localScale = new Vector3(1, enemy.transform.localScale.y, enemy.transform.localScale.z);
+                }
+
+                if (chooseDirection == 0)
+                {
+                    //go Down
+                    enemyManager.glideUp = false;
+                    enemyManager.glideDown = true;
+                }
+                else
+                {
+                    //Go Up
+                    enemyManager.glideUp = false;
+                    enemyManager.glideDown = true;
+                }
+            }
+            else if (enemyManager.goingDirection)
+            {
+                if (spawnDirection == 0)
+                {
+                    //Spawn Left Side
+                    enemyManager.goLeft = false;
+                    enemyManager.GoRight = true;
+                    enemy.transform.localScale = new Vector3(-1, enemy.transform.localScale.y, enemy.transform.localScale.z);
+                }
+                else
+                {
+                    //Spawn Right Side
+                    enemyManager.goLeft = true;
+                    enemyManager.GoRight = false;
+                    enemy.transform.localScale = new Vector3(1, enemy.transform.localScale.y, enemy.transform.localScale.z);
+                }
+            }
         }
+        
         Invoke("SpawnEnemy", enemySpawnRate);
     }
     private void SpawnItems()
     {
         Vector3 spawnPosition = new Vector3();
 
-            spawnPosition.y = player.transform.position.y + min_maxY.y;
-
-                var leftSpawnPositionX = player.transform.position.x - min_maxX.x;
-                var rightSpawnPositionX = player.transform.position.x + min_maxX.y;
-            spawnPosition.x = Random.Range(leftSpawnPositionX, rightSpawnPositionX);
+            spawnPosition.y = screenPositions.topSide;
+            spawnPosition.x = Random.Range(screenPositions.leftSide, screenPositions.rightSide);
                 var RandomItem = Random.Range(0, items.Count);
        
 
