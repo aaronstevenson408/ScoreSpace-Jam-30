@@ -167,6 +167,17 @@ public class Hazards : MonoBehaviour
         }
 
     }
+    public void CameraViewToScreen()
+    {
+        screenView = camera.WorldToViewportPoint(transform.position);
+        if (screenView.y < 0)
+        {
+            SelfDestruct();
+           // Debug.Log("Destroyed");
+        }
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
