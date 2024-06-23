@@ -113,10 +113,9 @@ public class Hazards : MonoBehaviour
         if(teleportedToPoint == false)
         {
             gameObject.transform.position = dropPoint.transform.position;
-            _rb.gravityScale = _gravity;
             teleportedToPoint = true;
-            Invoke("SelfDestruct", 5f);
         }
+        _rb.gravityScale = _gravity;
     }
     public void Gliding()
     {
@@ -141,7 +140,7 @@ public class Hazards : MonoBehaviour
         {
             if (!teleportedToPoint)
             {
-                gameObject.transform.position = pointB.transform.position;
+                gameObject.transform.position = pointA.transform.position;
                 teleportedToPoint = true;
             }
             if (goLeft)
@@ -233,7 +232,7 @@ public class MovementType: Editor
         } else if (hazards.usingDropPoint)
         {
             hazards.dropPoint = (GameObject)EditorGUILayout.ObjectField("DropPoint", hazards.dropPoint, typeof(GameObject), true);
-            hazards._gravity = EditorGUILayout.FloatField("Speed", hazards._gravity);
+            hazards._gravity = EditorGUILayout.FloatField("Gravity", hazards._gravity);
         }
         else if(hazards.usingGlide)
         {
