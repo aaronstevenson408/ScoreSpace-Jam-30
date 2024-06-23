@@ -19,7 +19,6 @@ public class Hazards : MonoBehaviour
     Rigidbody2D _rb;
 
     [Header("Two Point Movement")]
-
     [HideInInspector]
     public GameObject pointA;
     [HideInInspector]
@@ -114,10 +113,9 @@ public class Hazards : MonoBehaviour
         if(teleportedToPoint == false)
         {
             gameObject.transform.position = dropPoint.transform.position;
-            _rb.gravityScale = _gravity;
             teleportedToPoint = true;
-            Invoke("SelfDestruct", 5f);
         }
+        _rb.gravityScale = _gravity;
     }
     public void Gliding()
     {
@@ -142,7 +140,7 @@ public class Hazards : MonoBehaviour
         {
             if (!teleportedToPoint)
             {
-                gameObject.transform.position = pointB.transform.position;
+                gameObject.transform.position = pointA.transform.position;
                 teleportedToPoint = true;
             }
             if (goLeft)
@@ -156,7 +154,6 @@ public class Hazards : MonoBehaviour
             gameObject.transform.Translate(Vector2.down * speed / 100);
         }
     }
-
     public void GoDirection()
     {
         if (goLeft)
@@ -207,7 +204,7 @@ public class Hazards : MonoBehaviour
 public class MovementType: Editor
 {
 
-
+    bool hide;
     private void OnEnable()
     {
         
@@ -217,11 +214,14 @@ public class MovementType: Editor
         var hazards = (Hazards)target;
         hazards.type = this;
         base.OnInspectorGUI();
-
+        EditorGUILayout.BeginHorizontal();
         hazards.goingBetweenTwoPoints = EditorGUILayout.Toggle( "Going Between Two Points",hazards.goingBetweenTwoPoints);
         hazards.usingDropPoint = EditorGUILayout.Toggle("Drop Point",hazards.usingDropPoint);
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.BeginHorizontal();
         hazards.usingGlide = EditorGUILayout.Toggle("Glide", hazards.usingGlide);
         hazards.goingDirection = EditorGUILayout.Toggle("Go Direction", hazards.goingDirection);
+        EditorGUILayout.EndHorizontal();
 
 
         if (hazards.goingBetweenTwoPoints)
@@ -232,7 +232,7 @@ public class MovementType: Editor
         } else if (hazards.usingDropPoint)
         {
             hazards.dropPoint = (GameObject)EditorGUILayout.ObjectField("DropPoint", hazards.dropPoint, typeof(GameObject), true);
-            hazards._gravity = EditorGUILayout.FloatField("Speed", hazards._gravity);
+            hazards._gravity = EditorGUILayout.FloatField("Gravity", hazards._gravity);
         }
         else if(hazards.usingGlide)
         {
