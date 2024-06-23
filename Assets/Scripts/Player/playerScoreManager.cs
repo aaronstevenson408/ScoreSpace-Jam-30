@@ -12,7 +12,7 @@ public class PlayerScore : MonoBehaviour
     [SerializeField] GameObject floor;
 
     public int finalScore;
-    [SerializeField] TextMeshProUGUI score;
+    [SerializeField] Text score;
 
     private void Awake()
     {

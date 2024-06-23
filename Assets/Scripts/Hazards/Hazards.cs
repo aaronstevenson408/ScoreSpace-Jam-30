@@ -55,6 +55,8 @@ public class Hazards : MonoBehaviour
     public bool GoRight;
     //Speed
 
+    Vector2 screenView;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -109,11 +111,6 @@ public class Hazards : MonoBehaviour
     }
     public void DropHazard()
     {
-        if (teleportedToPoint == false)
-        {
-            gameObject.transform.position = dropPoint.transform.position;
-            teleportedToPoint = true;
-        }
         _rb.gravityScale = _gravity;
     }
     public void Gliding()
@@ -169,7 +166,7 @@ public class Hazards : MonoBehaviour
     }
     public void CameraViewToScreen()
     {
-        screenView = camera.WorldToViewportPoint(transform.position);
+        screenView = GetComponent<Camera>().WorldToViewportPoint(transform.position);
         if (screenView.y < 0)
         {
             SelfDestruct();
@@ -235,7 +232,6 @@ public class MovementType : Editor
         }
         else if (hazards.usingDropPoint)
         {
-            hazards.dropPoint = (GameObject)EditorGUILayout.ObjectField("DropPoint", hazards.dropPoint, typeof(GameObject), true);
             hazards._gravity = EditorGUILayout.FloatField("Gravity", hazards._gravity);
         }
         else if (hazards.usingGlide)
