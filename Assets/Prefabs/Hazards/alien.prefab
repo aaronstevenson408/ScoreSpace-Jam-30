@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7553077434901874167}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3669236105295204608}
   - component: {fileID: 6388593908414110449}
   - component: {fileID: 1821152144495186023}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: alien
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,6 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6cd02e0133b23419a6280c45a855bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnemy: 0
+  isPlatform: 0
   usingDropPoint: 0
   goingBetweenTwoPoints: 1
   usingGlide: 1
@@ -87,6 +89,8 @@ MonoBehaviour:
   type: {fileID: 0}
   pointA: {fileID: 5944158589199764080}
   pointB: {fileID: 7294697149315689244}
+  horizontalMovement: 0
+  verticalMovement: 0
   speed: 0
   isAtPointA: 0
   dropPoint: {fileID: 0}
@@ -163,7 +167,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -216,14 +220,14 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -271,7 +275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3365573654960502664}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}

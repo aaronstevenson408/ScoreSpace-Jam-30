@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4405716264876517991}
   - component: {fileID: 6821450837986135768}
   - component: {fileID: 4053704638695970532}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6cd02e0133b23419a6280c45a855bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnemy: 0
+  isPlatform: 0
   usingDropPoint: 0
   goingBetweenTwoPoints: 0
   usingGlide: 0
@@ -54,6 +56,8 @@ MonoBehaviour:
   type: {fileID: 0}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
+  horizontalMovement: 0
+  verticalMovement: 0
   speed: 10
   isAtPointA: 0
   dropPoint: {fileID: 0}
@@ -137,7 +141,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -157,7 +161,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
