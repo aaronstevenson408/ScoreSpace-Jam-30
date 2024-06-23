@@ -38,12 +38,12 @@ public class GameManager : MonoBehaviour
         if (spawnDirection == 0)
         {
             //Spawn Left Side
-            spawnPosition.x = screenPositions.leftSide;
+            spawnPosition.x = player.transform.position.x - Random.Range(3,10);
         }
         else
         {
             //Spawn Right Side
-            spawnPosition.x = screenPositions.rightSide;
+            spawnPosition.x = player.transform.position.x + Random.Range(3, 10);
         }
         GameObject enemy = null;
         if (isInFloorStage)
@@ -74,73 +74,75 @@ public class GameManager : MonoBehaviour
                 enemyManager = enemy.GetComponent<Hazards>();
             }
 
-            Debug.Log(enemyManager.gameObject);
-            if (enemyManager.usingDropPoint)
+            if(enemyManager != null)
             {
-                enemy.transform.position = new Vector3(Random.Range(screenPositions.leftSide, screenPositions.rightSide), enemy.transform.position.y, enemy.transform.position.z);
-            }
-            else if (enemyManager.goingBetweenTwoPoints)
-            {
-                if (spawnDirection == 0)
+                if (enemyManager.usingDropPoint)
                 {
-                    //Spawn Left Side
-                    enemyManager.pointA.transform.position = enemy.transform.position;
-                    enemyManager.pointB.transform.position = new Vector3(enemyManager.pointA.transform.position.x + (Random.Range(10, 30)), enemyManager.pointA.transform.position.y, enemyManager.pointA.transform.position.z);
+                    enemy.transform.position = new Vector3(enemy.transform.position.x + Random.Range(-5, 5), enemy.transform.position.y, enemy.transform.position.z);
+                }
+                else if (enemyManager.goingBetweenTwoPoints)
+                {
+                    if (spawnDirection == 0)
+                    {
+                        //Spawn Left Side
+                        enemyManager.pointA.transform.position = enemy.transform.position;
+                        enemyManager.pointB.transform.position = new Vector3(enemyManager.pointA.transform.position.x + (Random.Range(10, 30)), enemyManager.pointA.transform.position.y, enemyManager.pointA.transform.position.z);
 
-                }
-                else
-                {
-                    enemyManager.pointB.transform.position = enemy.transform.position;
-                    enemyManager.pointA.transform.position = new Vector3(enemyManager.pointB.transform.position.x - (Random.Range(10, 30)), enemyManager.pointB.transform.position.y, enemyManager.pointB.transform.position.z);
+                    }
+                    else
+                    {
+                        enemyManager.pointB.transform.position = enemy.transform.position;
+                        enemyManager.pointA.transform.position = new Vector3(enemyManager.pointB.transform.position.x - (Random.Range(10, 30)), enemyManager.pointB.transform.position.y, enemyManager.pointB.transform.position.z);
 
+                    }
                 }
-            }
-            else if (enemyManager.usingGlide)
-            {
-                var chooseDirection = Random.Range(0, 2);
-                if (spawnDirection == 0)
+                else if (enemyManager.usingGlide)
                 {
-                    //Spawn Left Side
-                    enemyManager.goLeft = false;
-                    enemyManager.GoRight = true;
-                    enemy.transform.localScale = new Vector3(-1, enemy.transform.localScale.y, enemy.transform.localScale.z);
-                }
-                else
-                {
-                    //Spawn Right Side
-                    enemyManager.goLeft = true;
-                    enemyManager.GoRight = false;
-                    enemy.transform.localScale = new Vector3(1, enemy.transform.localScale.y, enemy.transform.localScale.z);
-                }
+                    var chooseDirection = Random.Range(0, 2);
+                    if (spawnDirection == 0)
+                    {
+                        //Spawn Left Side
+                        enemyManager.goLeft = false;
+                        enemyManager.GoRight = true;
+                        enemy.transform.localScale = new Vector3(-1, enemy.transform.localScale.y, enemy.transform.localScale.z);
+                    }
+                    else
+                    {
+                        //Spawn Right Side
+                        enemyManager.goLeft = true;
+                        enemyManager.GoRight = false;
+                        enemy.transform.localScale = new Vector3(1, enemy.transform.localScale.y, enemy.transform.localScale.z);
+                    }
 
-                if (chooseDirection == 0)
-                {
-                    //go Down
-                    enemyManager.glideUp = false;
-                    enemyManager.glideDown = true;
+                    if (chooseDirection == 0)
+                    {
+                        //go Down
+                        enemyManager.glideUp = false;
+                        enemyManager.glideDown = true;
+                    }
+                    else
+                    {
+                        //Go Up
+                        enemyManager.glideUp = false;
+                        enemyManager.glideDown = true;
+                    }
                 }
-                else
+                else if (enemyManager.goingDirection)
                 {
-                    //Go Up
-                    enemyManager.glideUp = false;
-                    enemyManager.glideDown = true;
-                }
-            }
-            else if (enemyManager.goingDirection)
-            {
-                if (spawnDirection == 0)
-                {
-                    //Spawn Left Side
-                    enemyManager.goLeft = false;
-                    enemyManager.GoRight = true;
-                    enemy.transform.localScale = new Vector3(-1, enemy.transform.localScale.y, enemy.transform.localScale.z);
-                }
-                else
-                {
-                    //Spawn Right Side
-                    enemyManager.goLeft = true;
-                    enemyManager.GoRight = false;
-                    enemy.transform.localScale = new Vector3(1, enemy.transform.localScale.y, enemy.transform.localScale.z);
+                    if (spawnDirection == 0)
+                    {
+                        //Spawn Left Side
+                        enemyManager.goLeft = false;
+                        enemyManager.GoRight = true;
+                        enemy.transform.localScale = new Vector3(-1, enemy.transform.localScale.y, enemy.transform.localScale.z);
+                    }
+                    else
+                    {
+                        //Spawn Right Side
+                        enemyManager.goLeft = true;
+                        enemyManager.GoRight = false;
+                        enemy.transform.localScale = new Vector3(1, enemy.transform.localScale.y, enemy.transform.localScale.z);
+                    }
                 }
             }
         }
