@@ -27,9 +27,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+
   m_Children: []
   m_Father: {fileID: 5756322919358610516}
   m_RootOrder: -1
+
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3071936293249894745
 GameObject:
@@ -37,6 +39,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5028030003516348674}
@@ -369,3 +372,4 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   goLeft: 0
   GoRight: 0
+
