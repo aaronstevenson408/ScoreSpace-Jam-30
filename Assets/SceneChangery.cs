@@ -18,6 +18,7 @@ public class SceneChangery : MonoBehaviour
 
     private void Update()
     {
+        
         StageChange();
     }
 
@@ -25,7 +26,8 @@ public class SceneChangery : MonoBehaviour
     {
          if (gameManager.isInFloorStage)
         {
-            background.anchoredPosition = new Vector3 (background.anchoredPosition.x,groundLevel.yLevelToNewScene);
+            background.anchoredPosition = new Vector3(background.anchoredPosition.x, groundLevel.yPoisitionOfScene);
+
             if (gameManager.player.transform.position.y > skyLevel.yLevelToNewScene && gameManager.player.transform.position.y < SpaceLevel.yLevelToNewScene)
             {
                 CurrentStage(false, true, false);
@@ -33,7 +35,7 @@ public class SceneChangery : MonoBehaviour
         }
          if (gameManager.isInSkyStage)
         {
-            background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, skyLevel.yLevelToNewScene), speed/100);
+            background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, skyLevel.yPoisitionOfScene), speed/100);
             if (gameManager.player.transform.position.y > SpaceLevel.yLevelToNewScene)
             {
                 CurrentStage(false, false, true);
@@ -41,7 +43,7 @@ public class SceneChangery : MonoBehaviour
         }  if (gameManager.isInSpaceStage)
         {
             Debug.Log("Is in Space");
-            background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, SpaceLevel.yLevelToNewScene), speed/100);
+            background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, SpaceLevel.yPoisitionOfScene), speed/100);
         }
     }
 
