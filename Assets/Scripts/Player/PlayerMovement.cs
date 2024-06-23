@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
         if (playerManager.playerDead)
             return;
         MoveSideways();
-        RestrictMovements();
     }
     public void MoveSideways()
     {
@@ -45,20 +44,6 @@ public class PlayerMovement : MonoBehaviour
             flipped = false;
             //Debug.Log("Going Right");
             transform.localScale = new Vector2(1, 1);
-        }
-    }
-
-    void RestrictMovements()
-    {
-        if (transform.position.x < playerManager.leftPoint.transform.position.x)
-        {
-            //Debug.Log("Hit Left Border");
-            transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
-        }
-        if (transform.position.x > playerManager.rightPoint.transform.position.x)
-        {
-            //Debug.Log("Hit Right Border");
-            transform.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
         }
     }
 }

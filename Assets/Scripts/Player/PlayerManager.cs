@@ -10,8 +10,6 @@ public class PlayerManager : MonoBehaviour
     public PlayerScore playerScoreManager;
     [HideInInspector]
     public PlayerAnimation playerAnimations;
-    public GameObject leftPoint;
-    public GameObject rightPoint;
     [HideInInspector]
     public Rigidbody2D _rb;
 
