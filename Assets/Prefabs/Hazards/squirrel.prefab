@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3341719840557822484}
   - component: {fileID: 7803635767662215859}
   - component: {fileID: 4902375722812480867}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: squirrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,14 +136,14 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &4902375722812480867
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -159,7 +159,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -207,7 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1355048433281023729}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3285907991053022768}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}

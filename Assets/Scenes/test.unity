@@ -395,18 +395,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorEnemies:
-  - {fileID: 6379216132626115876, guid: 8cc1e4e42ca58034b9385810d4a8839b, type: 3}
-  - {fileID: 7514886066546644698, guid: cd6592a41f5a9ac4ea7a339fa0f0a03e, type: 3}
-  - {fileID: 7400970105259845607, guid: b35ddd3e6c88eb74ea6855b900aa2903, type: 3}
-  - {fileID: 5042112785330987270, guid: 7c6a4e0043dfda74187a642b29bae472, type: 3}
-  - {fileID: 6272539960291529953, guid: 35d04c26a4f7c2d46b8f5aea4cb1808f, type: 3}
-  - {fileID: 5956124032935821916, guid: a8e51b8c02a08b448839d1281bd4ca44, type: 3}
+  - {fileID: 8501291559827349138, guid: 7c6a4e0043dfda74187a642b29bae472, type: 3}
+  - {fileID: 1495729359697944493, guid: a8e51b8c02a08b448839d1281bd4ca44, type: 3}
   skyEmemies:
-  - {fileID: 7400970105259845607, guid: b35ddd3e6c88eb74ea6855b900aa2903, type: 3}
-  - {fileID: 7514886066546644698, guid: cd6592a41f5a9ac4ea7a339fa0f0a03e, type: 3}
+  - {fileID: 5743873011787297084, guid: b35ddd3e6c88eb74ea6855b900aa2903, type: 3}
+  - {fileID: 6285178984245742138, guid: 35d04c26a4f7c2d46b8f5aea4cb1808f, type: 3}
   spaceEnemies:
-  - {fileID: 6379216132626115876, guid: 8cc1e4e42ca58034b9385810d4a8839b, type: 3}
-  - {fileID: 5042112785330987270, guid: 7c6a4e0043dfda74187a642b29bae472, type: 3}
+  - {fileID: 5176297088558306956, guid: 8cc1e4e42ca58034b9385810d4a8839b, type: 3}
+  - {fileID: 8501291559827349138, guid: 7c6a4e0043dfda74187a642b29bae472, type: 3}
   items:
   - item: {fileID: 8537793407378016332, guid: 92b3c33ef9fa84663aaab82d3d4e0a74, type: 3}
     dropChanceOutOf100: 15
@@ -414,7 +410,7 @@ MonoBehaviour:
     dropChanceOutOf100: 20
   - item: {fileID: 1431090882585714414, guid: f37869d5bd5344efebdfe9b6e19bf8ba, type: 3}
     dropChanceOutOf100: 65
-  enemySpawnRate: 1000
+  enemySpawnRate: 0.1
   itemSpawnRate: 5
   player: {fileID: 1469931279}
   isInFloorStage: 1
@@ -792,7 +788,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258077748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50.2, y: 3, z: 0}
+  m_LocalPosition: {x: 50, y: 3.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1004,37 +1000,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &429758109
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 429758110}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &429758110
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429758109}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45, y: 3.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &446445631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,13 +1178,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 652179231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb52dd608f30b0544a9a459d662f637c, type: 3}
+  m_Script: {fileID: 11500000, guid: c32fdd9772122c94fa51aef6a9038de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   leftSide: 0
   rightSide: 0
   topSide: 0
-  bottomSide: 0
+  BottomSide: 0
 --- !u!1001 &660412877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2049,7 +2014,6 @@ MonoBehaviour:
   playerMovement: {fileID: 0}
   playerScoreManager: {fileID: 0}
   playerAnimations: {fileID: 0}
-  gameManager: {fileID: 143851609}
   _rb: {fileID: 0}
   leaderBoard: {fileID: 365602823}
   playerDead: 0
@@ -2676,8 +2640,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTime: 40
-  timeText: {fileID: 362646525}
+  timeText: {fileID: 0}
   canDecreaseTime: 0
+  gameOverCanvas: {fileID: 0}
+  playerUICanvas: {fileID: 0}
 --- !u!1 &2125500527
 GameObject:
   m_ObjectHideFlags: 0

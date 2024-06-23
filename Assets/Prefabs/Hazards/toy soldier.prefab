@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3960867840750432317}
   - component: {fileID: 3208701884497648857}
   - component: {fileID: 1739325271471324308}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: toy soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,14 +134,14 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &1739325271471324308
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
