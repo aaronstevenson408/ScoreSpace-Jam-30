@@ -5,6 +5,8 @@ using UnityEditor;
 
 public class Hazards : MonoBehaviour
 {
+    Camera cam;
+
     [HideInInspector]
     public bool usingDropPoint;
     [HideInInspector]
@@ -60,6 +62,7 @@ public class Hazards : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
     private void Update()
     {
@@ -83,6 +86,7 @@ public class Hazards : MonoBehaviour
 
             GoDirection();
         }
+        CameraViewToScreen();
     }
 
     public void MoveBetweenTwoPoints()
@@ -166,7 +170,7 @@ public class Hazards : MonoBehaviour
     }
     public void CameraViewToScreen()
     {
-        screenView = GetComponent<Camera>().WorldToViewportPoint(transform.position);
+        screenView = cam.WorldToViewportPoint(transform.position);
         if (screenView.y < 0)
         {
             SelfDestruct();
