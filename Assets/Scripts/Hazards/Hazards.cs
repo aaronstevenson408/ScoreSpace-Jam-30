@@ -5,6 +5,15 @@ using UnityEditor;
 
 public class Hazards : MonoBehaviour
 {
+    Camera camera;
+    Vector3 screenView;
+
+
+    [HideInInspector]
+    public bool isEnemy;
+    [HideInInspector]
+    public bool isPlatform;
+
     [HideInInspector]
     public bool usingDropPoint;
     [HideInInspector]
@@ -24,11 +33,15 @@ public class Hazards : MonoBehaviour
     [HideInInspector]
     public GameObject pointB;
     [HideInInspector]
+    public bool horizontalMovement;
+    [HideInInspector]
+    public bool verticalMovement;
+    [HideInInspector]
     public float speed;
     [HideInInspector]
     public bool isAtPointA;
 
-    [Header("Two Point Movement")]
+    [Header("Drop Point Movement")]
     [HideInInspector]
     public GameObject dropPoint;
     [HideInInspector]
@@ -85,18 +98,38 @@ public class Hazards : MonoBehaviour
 
     public void MoveBetweenTwoPoints()
     {
-        if (isAtPointA)
+
+        if (horizontalMovement)
         {
-            Debug.Log("Going To B");
-            gameObject.transform.Translate(Vector2.right * speed / 100);
-            gameObject.transform.localScale = new Vector2(-1, 1);
+            if (isAtPointA)
+            {
+                Debug.Log("Going To B");
+                gameObject.transform.Translate(Vector2.right * speed / 100);
+                gameObject.transform.localScale = new Vector2(-1, 1);
+            }
+            else
+            {
+                Debug.Log("Going To A");
+                gameObject.transform.Translate(-Vector2.right * speed / 100);
+                gameObject.transform.localScale = new Vector2(1, 1);
+            }
         }
-        else
+        else if (verticalMovement)
         {
-            Debug.Log("Going To A");
-            gameObject.transform.Translate(-Vector2.right * speed / 100);
-            gameObject.transform.localScale = new Vector2(1, 1);
+            if (isAtPointA)
+            {
+                Debug.Log("Going To B");
+                gameObject.transform.Translate(-Vector2.up * speed / 100);
+                gameObject.transform.localScale = new Vector2(-1, 1);
+            }
+            else
+            {
+                Debug.Log("Going To A");
+                gameObject.transform.Translate(Vector2.up * speed / 100);
+                gameObject.transform.localScale = new Vector2(1, 1);
+            }
         }
+
 
         if (pointA.name != "PointA")
         {
@@ -167,6 +200,16 @@ public class Hazards : MonoBehaviour
         }
 
     }
+    public void CameraViewToScreen()
+    {
+        screenView = camera.WorldToViewportPoint(transform.position);
+        if (screenView.y < 0)
+        {
+            SelfDestruct();
+            Debug.Log("Destroyed");
+        }
+
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -195,17 +238,13 @@ public class Hazards : MonoBehaviour
 [CustomEditor(typeof(Hazards))]
 public class MovementType : Editor
 {
-
-    bool hide;
-    private void OnEnable()
-    {
-
-    }
     public override void OnInspectorGUI()
     {
         var hazards = (Hazards)target;
         hazards.type = this;
-        base.OnInspectorGUI();
+        base.OnInspectorGUI()
+
+            ;
         EditorGUILayout.BeginHorizontal();
         hazards.goingBetweenTwoPoints = EditorGUILayout.Toggle("Going Between Two Points", hazards.goingBetweenTwoPoints);
         hazards.usingDropPoint = EditorGUILayout.Toggle("Drop Point", hazards.usingDropPoint);
@@ -215,11 +254,30 @@ public class MovementType : Editor
         hazards.goingDirection = EditorGUILayout.Toggle("Go Direction", hazards.goingDirection);
         EditorGUILayout.EndHorizontal();
 
+        if (hazards.isEnemy)
+        {
+            EditorGUILayout.BeginHorizontal();
+            hazards.goingBetweenTwoPoints = EditorGUILayout.Toggle("Going Between Two Points", hazards.goingBetweenTwoPoints);
+            hazards.usingDropPoint = EditorGUILayout.Toggle("Drop Point", hazards.usingDropPoint);
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            hazards.usingGlide = EditorGUILayout.Toggle("Glide", hazards.usingGlide);
+            hazards.goingDirection = EditorGUILayout.Toggle("Go Direction", hazards.goingDirection);
+            EditorGUILayout.EndHorizontal();
+        }
+        else if (hazards.isPlatform)
+        {
+            hazards.goingBetweenTwoPoints = EditorGUILayout.Toggle("Going Between Two Points", hazards.goingBetweenTwoPoints);
+        }
 
         if (hazards.goingBetweenTwoPoints)
         {
             hazards.pointA = (GameObject)EditorGUILayout.ObjectField("Point A", hazards.pointA, typeof(GameObject), true);
             hazards.pointB = (GameObject)EditorGUILayout.ObjectField("Point B", hazards.pointB, typeof(GameObject), true);
+            hazards.horizontalMovement = EditorGUILayout.Toggle("Horizontal Movement", hazards.glideDown);
+            hazards.verticalMovement = EditorGUILayout.Toggle("Vertical Movement", hazards.glideUp);
+
+
             hazards.speed = EditorGUILayout.FloatField("Speed", hazards.speed);
         }
         else if (hazards.usingDropPoint)
