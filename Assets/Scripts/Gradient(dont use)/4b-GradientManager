@@ -1,0 +1,100 @@
+// I see. If you're only seeing the main camera's background color, it suggests that our gradient sprite is either not rendering or is being rendered behind the camera's clear color. Let's try a different approach using a full-screen quad with a shader. This method should work regardless of the camera setup.
+// Unity Gradient ShaderClick to open code
+// Now, let's create a script to use this shader:
+// Unity Gradient ManagerClick to open code
+// To use this new approach:
+
+// Create a new shader in your project:
+
+// Right-click in the Project window
+// Select Create > Shader > Unlit Shader
+// Name it "GradientBackground"
+// Replace its contents with the shader code from the first artifact
+
+
+// Create a new script named "GradientManager" and paste the C# code from the second artifact.
+// In your scene:
+
+// Select your Main Camera
+// Add the GradientManager script to it
+// Adjust the colors and heights in the inspector as needed
+
+
+
+// This method uses a full-screen shader that renders behind everything else in your scene. It should work regardless of your camera setup or rendering pipeline.
+// If you still don't see the gradient:
+
+// Check the Console for any error messages.
+// Make sure the shader compiled successfully (no errors in the shader asset).
+// Verify that the Main Camera has the GradientManager script attached and enabled.
+// Try adjusting the Sky Height and Space Height values in the inspector to see if that affects the gradient.
+
+// Let me know if this works or if you need any further assistance!
+using UnityEngine;
+
+[ExecuteInEditMode]
+public class GradientManager : MonoBehaviour
+{
+    public Color groundColor = new Color(0.5f, 0.35f, 0.2f);
+    public Color skyColor = Color.blue;
+    public Color spaceColor = Color.black;
+    public float skyHeight = 10f;
+    public float spaceHeight = 20f;
+
+    private Material gradientMaterial;
+    private Camera mainCamera;
+
+    void Start()
+    {
+        mainCamera = Camera.main;
+        if (mainCamera == null)
+        {
+            Debug.LogError("Main camera not found!");
+            return;
+        }
+
+        gradientMaterial = new Material(Shader.Find("Custom/GradientBackground"));
+        if (gradientMaterial == null)
+        {
+            Debug.LogError("Gradient shader not found!");
+            return;
+        }
+
+        UpdateGradient();
+    }
+
+    void Update()
+    {
+        UpdateGradient();
+    }
+
+    void UpdateGradient()
+    {
+        if (gradientMaterial == null || mainCamera == null) return;
+
+        gradientMaterial.SetColor("_GroundColor", groundColor);
+        gradientMaterial.SetColor("_SkyColor", skyColor);
+        gradientMaterial.SetColor("_SpaceColor", spaceColor);
+        gradientMaterial.SetFloat("_SkyHeight", skyHeight);
+        gradientMaterial.SetFloat("_SpaceHeight", spaceHeight);
+
+        mainCamera.backgroundColor = Color.clear;
+        mainCamera.clearFlags = CameraClearFlags.SolidColor;
+    }
+
+    void OnRenderImage(RenderTexture source, RenderTexture destination)
+    {
+        if (gradientMaterial == null)
+        {
+            Graphics.Blit(source, destination);
+            return;
+        }
+
+        Graphics.Blit(source, destination, gradientMaterial);
+    }
+
+    void OnValidate()
+    {
+        UpdateGradient();
+    }
+}
