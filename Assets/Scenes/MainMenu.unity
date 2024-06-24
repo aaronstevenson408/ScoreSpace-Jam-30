@@ -1245,6 +1245,7 @@ MonoBehaviour:
   canDecreaseTime: 0
   gameOverCanvas: {fileID: 0}
   playerUICanvas: {fileID: 0}
+  timer: 0
 --- !u!1 &1125678508
 GameObject:
   m_ObjectHideFlags: 0
