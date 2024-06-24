@@ -53,7 +53,10 @@ public class WorldManager : MonoBehaviour
         if (canDecreaseTime)
             // DecreaseTime();
             test();
-        
+        if(timer <= 0)
+        {
+            GameObject.Find("Player").GetComponent<PlayerManager>().Dead();
+        }
     }
 
     public void ChangeMusic()
