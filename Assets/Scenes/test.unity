@@ -606,7 +606,7 @@ Transform:
   m_GameObject: {fileID: 229115783}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1469931283}
@@ -1937,7 +1937,7 @@ MonoBehaviour:
   timer: 0
   floor: {fileID: 1485345498}
   finalScore: 0
-  score: {fileID: 1735632694}
+  score: {fileID: 0}
 --- !u!114 &1469931285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2597,6 +2597,7 @@ MonoBehaviour:
   canDecreaseTime: 1
   gameOverCanvas: {fileID: 0}
   playerUICanvas: {fileID: 1303152296}
+  leaderboardCanvas: {fileID: 0}
   timeLeft: 40
   timer: 0
 --- !u!1 &2125500527
