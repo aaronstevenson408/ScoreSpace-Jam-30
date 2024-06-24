@@ -15,7 +15,7 @@ public class WorldManager : MonoBehaviour
 
     [Header("Time")]
     [SerializeField] private float startTime = 40;
-    [SerializeField] private Text timeText;
+    [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private bool canDecreaseTime = false;
 
     [Header("Game Over")]
