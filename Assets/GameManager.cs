@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     public bool isInSkyStage;
     public bool isInSpaceStage;
 
-    bool called;
     bool summonMonster;
     bool summonItem;
     ScreenPositions screenPositions;
@@ -29,28 +28,25 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (player.GetComponent<PlayerManager>().playerScoreManager.finalScore > 1 && !called)
+        if (player.GetComponent<PlayerManager>().playerScoreManager.finalScore > 1)
         {
-            SpawnEnemy();
-            SpawnItems();
-            called = true;
-        }
-        
-        if(!summonMonster)
-        {
-            Invoke("SpawnEnemy", enemySpawnRate);
-            
-        }
-        if (!summonItem)
-        {
-            Invoke("SpawnItems", itemSpawnRate);
 
+            if (!summonMonster)
+            {
+                StartCoroutine(SpawnEnemy());
+
+            }
+            if (!summonItem)
+            {
+                StartCoroutine(SpawnItems());
+            }
         }
 
     }
-    private void SpawnEnemy()
+    public IEnumerator SpawnEnemy()
     {
         summonMonster = true;
+        yield return new WaitForSeconds(enemySpawnRate);
         Vector3 spawnPosition = new Vector3();
 
         spawnPosition.y = screenPositions.topSide;
@@ -188,9 +184,10 @@ public class GameManager : MonoBehaviour
 
         summonMonster = false;
     }
-    private void SpawnItems()
+    public IEnumerator SpawnItems()
     {
         summonItem = true;
+        yield return new WaitForSeconds(itemSpawnRate);
         Vector3 spawnPosition = new Vector3();
 
         spawnPosition.y = screenPositions.topSide;
