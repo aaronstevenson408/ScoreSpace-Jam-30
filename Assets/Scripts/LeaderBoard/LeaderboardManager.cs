@@ -63,6 +63,10 @@ public class LeaderboardManager : MonoBehaviour
                        
                 }
             }
+            else
+            {
+               Invoke("LoadLeaderBoard", 2f);
+            }
         });
     }
     public void TryToAddItem( string name, int score, int rank)

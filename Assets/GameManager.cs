@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public bool isInSpaceStage;
 
     bool called;
+    bool summonMonster;
+    bool summonItem;
     ScreenPositions screenPositions;
 
     private void Awake()
@@ -33,10 +35,22 @@ public class GameManager : MonoBehaviour
             SpawnItems();
             called = true;
         }
+        
+        if(!summonMonster)
+        {
+            Invoke("SpawnEnemy", enemySpawnRate);
+            
+        }
+        if (!summonItem)
+        {
+            Invoke("SpawnItems", itemSpawnRate);
+
+        }
 
     }
     private void SpawnEnemy()
     {
+        summonMonster = true;
         Vector3 spawnPosition = new Vector3();
 
         spawnPosition.y = screenPositions.topSide;
@@ -172,10 +186,11 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        Invoke("SpawnEnemy", enemySpawnRate);
+        summonMonster = false;
     }
     private void SpawnItems()
     {
+        summonItem = true;
         Vector3 spawnPosition = new Vector3();
 
         spawnPosition.y = screenPositions.topSide;
@@ -190,7 +205,7 @@ public class GameManager : MonoBehaviour
                 var spawnedItem = Instantiate(items[RandomItem].item, spawnPosition, Quaternion.identity);
             }
         }
-        Invoke("SpawnItems", itemSpawnRate);
+        summonItem = false;
     }
     bool ShouldDropItem(ItemDropChance item)
     {
