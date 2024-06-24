@@ -11,14 +11,13 @@ GameObject:
   - component: {fileID: 2583466717147422766}
   - component: {fileID: 1980790098870300533}
   - component: {fileID: -8016505735340404287}
-  - component: {fileID: -1936971356485089502}
   m_Layer: 0
   m_Name: Vine9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2583466717147422766
 Transform:
   m_ObjectHideFlags: 0
@@ -32,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1980790098870300533
 SpriteRenderer:
@@ -160,18 +159,3 @@ PolygonCollider2D:
       - {x: 12.8, y: -10.8}
       - {x: 12.2, y: -9.8}
   m_UseDelaunayMesh: 0
---- !u!114 &-1936971356485089502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6876397344762994741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19bbb605cbf5a4d6096c52b0044f4661, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startOffset: -4
-  endOffset: 5
-  speed: 0
