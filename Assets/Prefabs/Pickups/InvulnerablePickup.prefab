@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217bb1c7e9c204100944e6a36ee92009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickup: {fileID: 8300000, guid: 661ebcea4994b40c3b1bffd96f805f6e, type: 3}
   invulnerabilityTime: 4
 --- !u!212 &-556107561604965156
 SpriteRenderer:
