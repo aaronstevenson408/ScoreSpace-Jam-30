@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 5139737142999102923}
   - component: {fileID: 7555905846334714623}
   - component: {fileID: 347253981586311966}
-  - component: {fileID: 5939137063553322495}
+  - component: {fileID: 7872663722256858130}
   m_Layer: 0
   m_Name: Vine1
   m_TagString: Untagged
@@ -179,7 +179,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -231,7 +231,7 @@ PolygonCollider2D:
       - {x: -6.8, y: -8.8}
       - {x: -6.4, y: -6.2000003}
   m_UseDelaunayMesh: 0
---- !u!114 &5939137063553322495
+--- !u!114 &7872663722256858130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,9 +248,9 @@ MonoBehaviour:
   usingGlide: 0
   goingDirection: 0
   type: {fileID: 0}
-  pointA: {fileID: 0}
-  pointB: {fileID: 0}
-  speed: 0
+  pointA: {fileID: 5053089694846944811}
+  pointB: {fileID: 3996330277477575292}
+  speed: 2
   isAtPointA: 0
   dropPoint: {fileID: 0}
   _gravity: 0

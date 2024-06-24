@@ -11,14 +11,13 @@ GameObject:
   - component: {fileID: 534560669670406379}
   - component: {fileID: 3483219403124218974}
   - component: {fileID: -8498677407597504751}
-  - component: {fileID: -144285327169393404}
   m_Layer: 0
   m_Name: Vine10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &534560669670406379
 Transform:
   m_ObjectHideFlags: 0
@@ -32,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3483219403124218974
 SpriteRenderer:
@@ -158,18 +157,3 @@ PolygonCollider2D:
       - {x: 12.8, y: -9.6}
       - {x: 12.400001, y: -7.4}
   m_UseDelaunayMesh: 0
---- !u!114 &-144285327169393404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299955941572286519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19bbb605cbf5a4d6096c52b0044f4661, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startOffset: -3
-  endOffset: 4
-  speed: 3

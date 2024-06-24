@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1888058426688542804}
   - component: {fileID: 7058141137259813006}
   - component: {fileID: -6477305569587229814}
-  - component: {fileID: 1106363000752299013}
   m_Layer: 0
   m_Name: Vine7
   m_TagString: Untagged
@@ -32,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7058141137259813006
 SpriteRenderer:
@@ -162,31 +161,3 @@ PolygonCollider2D:
       - {x: -1, y: -7.2000003}
       - {x: -1.4, y: -6.8}
   m_UseDelaunayMesh: 0
---- !u!114 &1106363000752299013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3927715441426750857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab6cd02e0133b23419a6280c45a855bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  usingDropPoint: 0
-  goingBetweenTwoPoints: 0
-  usingGlide: 0
-  goingDirection: 0
-  type: {fileID: 0}
-  pointA: {fileID: 0}
-  pointB: {fileID: 0}
-  speed: 0
-  isAtPointA: 0
-  dropPoint: {fileID: 0}
-  _gravity: 0
-  glideUp: 0
-  glideDown: 0
-  spawnPoint: {fileID: 0}
-  goLeft: 0
-  GoRight: 0
