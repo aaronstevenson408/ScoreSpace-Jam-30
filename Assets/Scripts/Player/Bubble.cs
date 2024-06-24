@@ -6,77 +6,58 @@ using UnityEngine;
 public class Bubble : MonoBehaviour
 {
     //there is only one bubble in the scene
+    PlayerManager playerManager;
     private static Bubble instance;
     public static Bubble Instance { get { return instance; } }
-
-    [SerializeField] private bool canGrow;
-    [SerializeField] private float minSize = 1;
-    [SerializeField] private float maxSize = 5;
-    [SerializeField] private float growSpeed = 1.5f;
     [SerializeField] private Transform bubbleSprite;
 
     float timer;
-    float slowAmt;
-    bool isSlow = false;
+
+    [Header("Test")]
+     float growamount;
 
     void Awake()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
         instance = this;
     }
 
     void Start()
     {
-        if (canGrow)
-            bubbleSprite.localScale = new Vector3(minSize, minSize, minSize);
     }
 
     // Update is called once per frame
     void Update()
     {
+        Grow();
         timer += Time.deltaTime;
         //bubble grows in size based on time
-        if (canGrow)
+    }
+    public void Grow()
+    {
+        growamount += .00005f;
+        if (growamount <5)
         {
-            if (!isSlow) Grow(timer / maxSize * growSpeed);
-            else Grow(slowAmt);
+            if (growamount > 2)
+            {
+                transform.localScale = new Vector3(growamount, growamount, growamount);
+            }
+            else
+            {
+                transform.localScale = new Vector3(2, 2, 2);
+            }
+        } else
+        {
+            transform.localScale = new Vector3(5, 5, 5);
         }
+       
     }
-
-    void Grow(float amt)
-    {
-        Debug.Log(amt);
-        amt = Mathf.Clamp(amt, minSize, maxSize);
-        bubbleSprite.localScale = Vector3.one * amt;
-
-    }
-
-    public IEnumerator SlowSpeed(float slowAmt, float slowTime)
-    {
-        //slow bubble growth
-        isSlow = true;
-        Debug.Assert(true, "slow down---------------------------------------");
-        this.slowAmt = slowAmt * growSpeed;
-        yield return new WaitForSeconds(slowTime);
-        isSlow = false;
-        Debug.Assert(true, "slow down end---------------------------------------");
-
-
-    }
-
-    public IEnumerator Invulnerability(float invinsibilityTime)
-    {
-        canGrow = false;
-        yield return new WaitForSeconds(invinsibilityTime);
-        canGrow = true;
-        StopCoroutine("Invulnerability");
-    }
-
     public void Pop()
     {
         if (bubbleSprite != null)
         {
             bubbleSprite.gameObject.SetActive(false);
-            bubbleSprite.localScale = new Vector3(minSize, minSize, minSize);
+            bubbleSprite.localScale = new Vector3(2, 2, 2);
         }
         WorldManager.Instance.End();
         //lose

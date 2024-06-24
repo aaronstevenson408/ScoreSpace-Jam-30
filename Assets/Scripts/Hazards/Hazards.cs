@@ -36,6 +36,10 @@ public class Hazards : MonoBehaviour
     [HideInInspector]
     public float _gravity;
     bool teleportedToPoint;
+    [HideInInspector]
+    public bool verticalMovement;
+    [HideInInspector]
+    public bool horizontalMovement;
 
     [Header("Glide")]
     [HideInInspector]
@@ -91,18 +95,36 @@ public class Hazards : MonoBehaviour
 
     public void MoveBetweenTwoPoints()
     {
-        if (isAtPointA)
+        if (horizontalMovement)
         {
-            Debug.Log("Going To B");
-            gameObject.transform.Translate(Vector2.right * speed / 100);
-            gameObject.transform.localScale = new Vector2(-1, 1);
-        }
-        else
+            if (isAtPointA)
+            {
+                Debug.Log("Going To B");
+                gameObject.transform.Translate(Vector2.right * speed / 100);
+                gameObject.transform.localScale = new Vector2(-1, 1);
+            }
+            else
+            {
+                Debug.Log("Going To A");
+                gameObject.transform.Translate(-Vector2.right * speed / 100);
+                gameObject.transform.localScale = new Vector2(1, 1);
+            }
+        } else if (verticalMovement)
         {
-            Debug.Log("Going To A");
-            gameObject.transform.Translate(-Vector2.right * speed / 100);
-            gameObject.transform.localScale = new Vector2(1, 1);
+            if (isAtPointA)
+            {
+                Debug.Log("Going To B");
+                gameObject.transform.Translate(-Vector2.up * speed / 100);
+                gameObject.transform.localScale = new Vector2(-1, 1);
+            }
+            else
+            {
+                Debug.Log("Going To A");
+                gameObject.transform.Translate(Vector2.up * speed / 100);
+                gameObject.transform.localScale = new Vector2(1, 1);
+            }
         }
+       
 
         if (pointA.name != "PointA")
         {
@@ -232,6 +254,10 @@ public class MovementType : Editor
         {
             hazards.pointA = (GameObject)EditorGUILayout.ObjectField("Point A", hazards.pointA, typeof(GameObject), true);
             hazards.pointB = (GameObject)EditorGUILayout.ObjectField("Point B", hazards.pointB, typeof(GameObject), true);
+
+            hazards.verticalMovement = EditorGUILayout.Toggle("Vertical Movement", hazards.verticalMovement);
+            hazards.horizontalMovement = EditorGUILayout.Toggle("Horizontal Movement", hazards.horizontalMovement);
+
             hazards.speed = EditorGUILayout.FloatField("Speed", hazards.speed);
         }
         else if (hazards.usingDropPoint)
