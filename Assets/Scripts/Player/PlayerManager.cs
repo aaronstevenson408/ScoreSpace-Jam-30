@@ -26,6 +26,9 @@ public class PlayerManager : MonoBehaviour
      public float gravityScale = -1;
      float slowSpeedTimer;
      float invulnTimer;
+    [SerializeField] AudioClip falling;
+    [HideInInspector]
+    public SoundManager soundManager;
 
     private void Awake()
     {
@@ -35,6 +38,11 @@ public class PlayerManager : MonoBehaviour
         playerAnimations = GetComponent<PlayerAnimation>();
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
+    }
+
+    private void Start()
+    {
+        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
     }
 
     private void Update()
@@ -51,6 +59,7 @@ public class PlayerManager : MonoBehaviour
 
     public void Dead()
     {
+        soundManager.ChangeSFX(falling);
         _rb.gravityScale = 1;
         _collider.enabled = false;
         leaderBoard.SubmitScore(playerScoreManager.finalScore);
