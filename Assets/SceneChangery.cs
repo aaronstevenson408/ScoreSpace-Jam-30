@@ -1,26 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SceneChangery : MonoBehaviour
 {
     public RectTransform background;
     public changeScenery groundLevel;
     public changeScenery skyLevel;
-    public changeScenery SpaceLevel;
-
-    GameManager gameManager;
-
+    public changeScenery spaceLevel;
+    public GameManager gameManager;
 
     [Header("Options")]
-    public float changeBackgroundSpeed;
+    public float changeBackgroundSpeed = 100.0f;
     public float dynamicSceneYlevel;
+    public float distForSceneChange = 10.0f;
+    public float increaseGravityPerStage = 1.0f;
+    private bool isUsingdynamicSceneChange;
+    private bool valueChanged;
 
-    float distForSceneChange;
-    bool isUsingdynamicSceneChange;
-    [SerializeField] float increaseGravityPerStage;
-     bool valueChanged;
     private void Awake()
     {
         gameManager = GetComponent<GameManager>();
@@ -28,7 +25,6 @@ public class SceneChangery : MonoBehaviour
 
     private void Update()
     {
-        
         StageChange();
     }
 
@@ -38,46 +34,44 @@ public class SceneChangery : MonoBehaviour
         {
             if (gameManager.isInFloorStage)
             {
-                background.anchoredPosition = new Vector3(background.anchoredPosition.x, groundLevel.backgroundScenePositionY);
+                background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, groundLevel.backgroundScenePositionY), Time.deltaTime * changeBackgroundSpeed / 100f);
                 if (!valueChanged)
                 {
                     gameManager.enemySpawnRate -= groundLevel.increaseEnemySpawns;
                     gameManager.player.GetComponent<PlayerManager>().gravityScale -= groundLevel.increaseGravity;
-                    valueChanged =true;
+                    valueChanged = true;
                 }
-                if (gameManager.player.transform.position.y > skyLevel.yLevelToNewScene && gameManager.player.transform.position.y < SpaceLevel.yLevelToNewScene)
-                {   
+                if (gameManager.player.transform.position.y > skyLevel.yLevelToNewScene && gameManager.player.transform.position.y < spaceLevel.yLevelToNewScene)
+                {
                     CurrentStage(false, true, false);
                 }
             }
-            if (gameManager.isInSkyStage)
+            else if (gameManager.isInSkyStage)
             {
-                
-                background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, skyLevel.backgroundScenePositionY), changeBackgroundSpeed / 100);
+                background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, skyLevel.backgroundScenePositionY), Time.deltaTime * changeBackgroundSpeed / 100f);
                 if (!valueChanged)
                 {
                     gameManager.enemySpawnRate -= skyLevel.increaseEnemySpawns;
                     gameManager.player.GetComponent<PlayerManager>().gravityScale -= skyLevel.increaseGravity;
                     valueChanged = true;
                 }
-                if (gameManager.player.transform.position.y > SpaceLevel.yLevelToNewScene)
+                if (gameManager.player.transform.position.y > spaceLevel.yLevelToNewScene)
                 {
                     CurrentStage(false, false, true);
                 }
             }
-            if (gameManager.isInSpaceStage)
+            else if (gameManager.isInSpaceStage)
             {
                 Debug.Log("Is in Space");
-                background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, SpaceLevel.backgroundScenePositionY), changeBackgroundSpeed / 100);
+                background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, spaceLevel.backgroundScenePositionY), Time.deltaTime * changeBackgroundSpeed / 100f);
                 if (!valueChanged)
                 {
-                    gameManager.enemySpawnRate -= SpaceLevel.increaseEnemySpawns;
-                    gameManager.player.GetComponent<PlayerManager>().gravityScale -= SpaceLevel.increaseGravity;
+                    gameManager.enemySpawnRate -= spaceLevel.increaseEnemySpawns;
+                    gameManager.player.GetComponent<PlayerManager>().gravityScale -= spaceLevel.increaseGravity;
                     valueChanged = true;
                 }
-                if (gameManager.player.transform.position.y > SpaceLevel.yLevelToNewScene + ((SpaceLevel.yLevelToNewScene + SpaceLevel.yLevelToNewScene) / 2))
+                if (gameManager.player.transform.position.y > spaceLevel.yLevelToNewScene + ((spaceLevel.yLevelToNewScene + spaceLevel.yLevelToNewScene) / 2))
                 {
-                    
                     isUsingdynamicSceneChange = true;
                 }
             }
@@ -90,25 +84,21 @@ public class SceneChangery : MonoBehaviour
                 valueChanged = false;
                 if (gameManager.isInSpaceStage && !changedScene)
                 {
-                    background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, skyLevel.backgroundScenePositionY), changeBackgroundSpeed / 100);
-                    valueChanged = false;
+                    background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, groundLevel.backgroundScenePositionY), Time.deltaTime * changeBackgroundSpeed / 100f);
                     gameManager.isInSkyStage = true;
                     gameManager.isInSpaceStage = false;
                     changedScene = true;
-
-
-                } 
-                if (gameManager.isInSkyStage && !changedScene)
+                }
+                else if (gameManager.isInSkyStage && !changedScene)
                 {
-                    //background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, SpaceLevel.backgroundScenePositionY), changeBackgroundSpeed / 100);
-
+                    background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, spaceLevel.backgroundScenePositionY), Time.deltaTime * changeBackgroundSpeed / 100f);
                     gameManager.isInSkyStage = false;
                     gameManager.isInSpaceStage = true;
-                    valueChanged = false;
                     changedScene = true;
                 }
-                
-                dynamicSceneYlevel = gameManager.player.transform.position.y + (gameManager.player.transform.position.y*.5f);
+
+                dynamicSceneYlevel = gameManager.player.transform.position.y * 2;
+
                 if (!valueChanged)
                 {
                     gameManager.enemySpawnRate -= .05f;
@@ -119,7 +109,6 @@ public class SceneChangery : MonoBehaviour
         }
     }
 
-
     public void CurrentStage(bool ground, bool sky, bool space)
     {
         valueChanged = false;
@@ -128,6 +117,7 @@ public class SceneChangery : MonoBehaviour
         gameManager.isInSpaceStage = space;
     }
 }
+
 [System.Serializable]
 public class changeScenery
 {
