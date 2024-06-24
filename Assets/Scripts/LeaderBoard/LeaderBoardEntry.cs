@@ -6,6 +6,7 @@ public class LeaderBoardEntry : MonoBehaviour
 {
     public Text playerName;
     public Text playerScore;
+    public Text playerRank;
 
     private void Awake()
     {
