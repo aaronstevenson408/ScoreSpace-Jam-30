@@ -11,6 +11,7 @@ public class Bubble : MonoBehaviour
     public static Bubble Instance { get { return instance; } }
     [SerializeField] private Transform bubbleSprite;
       float growamount;
+    [SerializeField] AudioClip bubblePop;
 
     void Awake()
     {
@@ -51,6 +52,7 @@ public class Bubble : MonoBehaviour
     {
         if (bubbleSprite != null)
         {
+            playerManager.soundManager.ChangeSFX(bubblePop);
             bubbleSprite.gameObject.SetActive(false);
             bubbleSprite.localScale = new Vector3(2, 2, 2);
         }

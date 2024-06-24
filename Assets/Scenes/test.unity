@@ -898,6 +898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleSprite: {fileID: 229115784}
+  bubblePop: {fileID: 8300000, guid: 26415103cf3fbd04dbd4edb9e668c95f, type: 3}
 --- !u!1 &258077748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,7 +1346,6 @@ GameObject:
   m_Component:
   - component: {fileID: 652179234}
   - component: {fileID: 652179233}
-  - component: {fileID: 652179232}
   - component: {fileID: 652179235}
   m_Layer: 0
   m_Name: Main Camera
@@ -1354,14 +1354,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &652179232
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652179231}
-  m_Enabled: 1
 --- !u!20 &652179233
 Camera:
   m_ObjectHideFlags: 0
@@ -2930,6 +2922,8 @@ MonoBehaviour:
   playerDead: 0
   playerCamera: {fileID: 652179231}
   gravityScale: 0
+  falling: {fileID: 8300000, guid: 1c9087424e828224688642897bfb9bd9, type: 3}
+  soundManager: {fileID: 0}
 --- !u!114 &1469931287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3514,6 +3508,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed0884bf3e48cf43bd9e036c3a4a8c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainMenu: {fileID: 8300000, guid: 5b77edf3d404ca74485b4271e97b95c1, type: 3}
+  GameMusic: {fileID: 8300000, guid: 9eddf1a5601fb154e916dfaa4239570b, type: 3}
+  GameOver: {fileID: 8300000, guid: a7dfde0f517d945438df4bb2975e53c7, type: 3}
   startTime: 40
   timeText: {fileID: 1656012904}
   canDecreaseTime: 1

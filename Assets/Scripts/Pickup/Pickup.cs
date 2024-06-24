@@ -7,9 +7,15 @@ public class Pickup : MonoBehaviour
 {
     Camera cam;
     Vector2 screenView;
+    [SerializeField] AudioClip pickup;
+    SoundManager soundManager;
     private void Awake()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+    }
+    private void Start()
+    {
+        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
     }
 
     private void Update()
@@ -21,6 +27,7 @@ public class Pickup : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            soundManager.ChangeSFX(pickup);
             DoSomething();
             Destroy(gameObject);
         }
