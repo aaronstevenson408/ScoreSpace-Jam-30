@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5756842021333091660}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5134033028449901427}
   - component: {fileID: 2167962089199173499}
   - component: {fileID: 9157774996499245420}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: planetSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1599506562617873353}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 9160772474752355375}
   - component: {fileID: 4182834402150981884}
   - component: {fileID: 2938377568420330814}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Planet1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2911147899722853522}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Planet1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

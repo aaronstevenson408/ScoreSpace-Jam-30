@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5945906500810027839}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 717964658025699349}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 886474031030749817}
   - component: {fileID: 5781732268974212769}
   - component: {fileID: 1899801818550769432}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 1963698267159316938}
   - component: {fileID: 8985742090666956994}
   - component: {fileID: 608166013267765959}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cloudSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
