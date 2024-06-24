@@ -872,21 +872,21 @@ MonoBehaviour:
   skyEmemies:
   - {fileID: 5743873011787297084, guid: b35ddd3e6c88eb74ea6855b900aa2903, type: 3}
   - {fileID: 6285178984245742138, guid: 35d04c26a4f7c2d46b8f5aea4cb1808f, type: 3}
-  - {fileID: 8032321091898582248, guid: a6d4d060f45cc4778a73f5970231b12b, type: 3}
-  - {fileID: 8967102519394762079, guid: 213370a60065846ba82fa4be1641733e, type: 3}
-  - {fileID: 7179031107603357424, guid: e8608fc8bc8ef4d42b9161e5f5b0953e, type: 3}
-  - {fileID: 2768242827682446960, guid: 91e02142fddb54de39dcc98f04cbac66, type: 3}
-  - {fileID: 7112518871092692653, guid: afe2875aba9153e46904a5cde01de905, type: 3}
-  - {fileID: 3219893618715862162, guid: fa41e7600ebdab14da8ef83b76bd82c8, type: 3}
-  - {fileID: 3517677144945877781, guid: b444f9cd975080e4d8c8d5546703d7a9, type: 3}
+  - {fileID: 7444473531205201963, guid: a6d4d060f45cc4778a73f5970231b12b, type: 3}
+  - {fileID: 1013883194023759667, guid: 213370a60065846ba82fa4be1641733e, type: 3}
+  - {fileID: 398179394365675288, guid: e8608fc8bc8ef4d42b9161e5f5b0953e, type: 3}
+  - {fileID: 3230696585790506315, guid: 91e02142fddb54de39dcc98f04cbac66, type: 3}
+  - {fileID: 120506087437659165, guid: afe2875aba9153e46904a5cde01de905, type: 3}
+  - {fileID: 7170033523528638333, guid: fa41e7600ebdab14da8ef83b76bd82c8, type: 3}
+  - {fileID: 1359329920534864328, guid: b444f9cd975080e4d8c8d5546703d7a9, type: 3}
   spaceEnemies:
   - {fileID: 5176297088558306956, guid: 8cc1e4e42ca58034b9385810d4a8839b, type: 3}
   - {fileID: 8501291559827349138, guid: 7c6a4e0043dfda74187a642b29bae472, type: 3}
-  - {fileID: 345508984989691779, guid: 2aedd037f07664e8d9f0c80a71335da5, type: 3}
-  - {fileID: 1791045561620143547, guid: d94b19a3aa6614f8a92d54a7caffbef2, type: 3}
-  - {fileID: 4323699821899579599, guid: dc89a41c932f4409d95c8715993c752b, type: 3}
-  - {fileID: 314248468645528536, guid: e37b63fd86059458db2ef60f33bdb49c, type: 3}
-  - {fileID: 1984427991863955009, guid: 6f78bf6e7051647c0b26a1cdf5f631aa, type: 3}
+  - {fileID: 5390148928648931380, guid: 2aedd037f07664e8d9f0c80a71335da5, type: 3}
+  - {fileID: 8756262660420792986, guid: d94b19a3aa6614f8a92d54a7caffbef2, type: 3}
+  - {fileID: 4607935123386413780, guid: dc89a41c932f4409d95c8715993c752b, type: 3}
+  - {fileID: 1823075601924896850, guid: e37b63fd86059458db2ef60f33bdb49c, type: 3}
+  - {fileID: 7376068097247429500, guid: 6f78bf6e7051647c0b26a1cdf5f631aa, type: 3}
   items:
   - item: {fileID: 8537793407378016332, guid: 92b3c33ef9fa84663aaab82d3d4e0a74, type: 3}
     dropChanceOutOf100: 15
@@ -935,17 +935,17 @@ MonoBehaviour:
     increaseGravity: 0.001
   skyLevel:
     backgroundScenePositionY: 1229
-    yLevelToNewScene: 50
+    yLevelToNewScene: 100
     increaseEnemySpawns: 0.06
     increaseGravity: 0.003
   spaceLevel:
     backgroundScenePositionY: -2556
-    yLevelToNewScene: 100
+    yLevelToNewScene: 200
     increaseEnemySpawns: 0.08
     increaseGravity: 0.005
   gameManager: {fileID: 143851609}
   changeBackgroundSpeed: 100
-  dynamicSceneYlevel: 100
+  dynamicSceneYlevel: 300
   distForSceneChange: 100
   increaseGravityPerStage: 0.01
 --- !u!1 &164489816
