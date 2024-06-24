@@ -18,16 +18,22 @@ public class GameManager : MonoBehaviour
     public bool isInSkyStage;
     public bool isInSpaceStage;
 
+    bool called;
     ScreenPositions screenPositions;
 
     private void Awake()
     {
         screenPositions = GameObject.Find("Main Camera").GetComponent<ScreenPositions>();
     }
-    private void Start()
+    private void Update()
     {
-        SpawnEnemy();
-        SpawnItems();
+        if (player.GetComponent<PlayerManager>().playerScoreManager.finalScore > 1 && !called)
+        {
+            SpawnEnemy();
+            SpawnItems();
+            called = true;
+        }
+
     }
     private void SpawnEnemy()
     {

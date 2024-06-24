@@ -22,11 +22,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] GameObject playerCamera;
     Collider2D _collider;
 
-    public float gravityScale;
-
-
-    public float slowSpeedTimer;
-    public float invulnTimer;
+     float gravityScale;
+     float slowSpeedTimer;
+     float invulnTimer;
 
     private void Awake()
     {
@@ -48,7 +46,11 @@ public class PlayerManager : MonoBehaviour
 
     void IncreaseGravity()
     {
-        gravityScale -= .0001f;
+        if (gravityScale > -.5)
+        {
+            gravityScale -= .00001f;
+        }
+        
     }
     void SyncCamera()
     {
