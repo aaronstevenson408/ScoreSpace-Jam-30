@@ -8,8 +8,8 @@ public class InvulnerablePickup : Pickup
 
     protected override void DoSomething()
     {
-        Bubble.Instance.StartCoroutine(
-            Bubble.Instance.Invulnerability(invulnerabilityTime)
-        );
+        GameObject.Find("Player").GetComponent<PlayerManager>().Invulnerability(invulnerabilityTime);
     }
+
+
 }

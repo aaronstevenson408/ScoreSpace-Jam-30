@@ -9,9 +9,6 @@ public class SlowPickup : Pickup
 
     protected override void DoSomething()
     {
-        Bubble.Instance.StartCoroutine(
-                   Bubble.Instance.SlowSpeed(slowAmt, slowTime)
-               );
+        GameObject.Find("Player").GetComponent<PlayerManager>().SlowSpeed(slowTime,slowAmt);
     }
-
 }

@@ -16,6 +16,7 @@ public class Pickup : MonoBehaviour
     {
         CameraViewToScreen();
     }
+
     public void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")
@@ -24,7 +25,6 @@ public class Pickup : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     protected virtual void DoSomething() { }
     public void CameraViewToScreen()
     {
