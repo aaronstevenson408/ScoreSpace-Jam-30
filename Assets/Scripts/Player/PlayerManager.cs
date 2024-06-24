@@ -22,7 +22,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] GameObject playerCamera;
     Collider2D _collider;
 
-     float gravityScale;
+    [HideInInspector]
+     public float gravityScale = -1;
      float slowSpeedTimer;
      float invulnTimer;
 
@@ -41,17 +42,8 @@ public class PlayerManager : MonoBehaviour
         if (playerDead)
             return;
         SyncCamera();
-        IncreaseGravity();
     }
 
-    void IncreaseGravity()
-    {
-        if (gravityScale > -.5)
-        {
-            gravityScale -= .00001f;
-        }
-        
-    }
     void SyncCamera()
     {
         playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y, playerCamera.transform.position.z);

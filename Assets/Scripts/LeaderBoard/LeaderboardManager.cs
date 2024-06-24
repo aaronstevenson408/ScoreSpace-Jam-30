@@ -54,18 +54,18 @@ public class LeaderboardManager : MonoBehaviour
                     Debug.Log("Player is: " + members[i].player.id.ToString());
                     if (members[i].player.name != "")
                     {
-                        TryToAddItem(members[i].player.name, members[i].score);
+                        TryToAddItem(members[i].player.name, members[i].score, members[i].rank);
                     }
                     else
                     {
-                        TryToAddItem(members[i].player.id.ToString(), members[i].score);
+                        TryToAddItem(members[i].player.id.ToString(), members[i].score, members[i].rank);
                     }
                        
                 }
             }
         });
     }
-    public void TryToAddItem( string name, int score)
+    public void TryToAddItem( string name, int score, int rank)
     {
         Debug.Log("Checking01");
         bool entryExists = false;
@@ -90,12 +90,13 @@ public class LeaderboardManager : MonoBehaviour
             if (entryExists==false)
             {
                 Debug.Log("DoesntExits");
-                Entry newSlot = new Entry(name, score);
-               entry.Add(new Entry(name, score));
+                Entry newSlot = new Entry(name, score,rank);
+               entry.Add(new Entry(name, score,rank));
                     var clone = Instantiate(entry_prefab, content.transform);
                     clone.GetComponent<LeaderBoardEntry>().playerName.text = name;
                     clone.GetComponent<LeaderBoardEntry>().playerScore.text = score.ToString();
-            }
+                    clone.GetComponent<LeaderBoardEntry>().playerRank.text = "#"+rank.ToString();
+        }
         
     }
 
@@ -107,10 +108,11 @@ public class Entry
     public string playerName;
     public int score;
     public int rank;
-    public Entry(string _name, int _score)
+    public Entry(string _name, int _score, int _rank)
     {
         playerName = _name;
         score = _score;
+        rank = _rank;
     }
     public void ChangeScore(int _score)
     {
