@@ -86,13 +86,13 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            if (gravityScale < -1)
+            if (gravityScale < -.1f)
             {
                 _rb.gravityScale = gravityScale;
             }
             else
             {
-                _rb.gravityScale = -1;
+                _rb.gravityScale = -.1f;
             }
            
         }

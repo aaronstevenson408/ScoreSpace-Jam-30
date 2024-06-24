@@ -76,7 +76,7 @@ public class SceneChangery : MonoBehaviour
                 }
             }
         }
-        else
+        if(isUsingdynamicSceneChange)
         {
             if (gameManager.player.transform.position.y - dynamicSceneYlevel >= distForSceneChange)
             {
