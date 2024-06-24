@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
-
 public class Bubble : MonoBehaviour
 {
     //there is only one bubble in the scene
@@ -10,18 +9,17 @@ public class Bubble : MonoBehaviour
     private static Bubble instance;
     public static Bubble Instance { get { return instance; } }
     [SerializeField] private Transform bubbleSprite;
-      float growamount;
+    float growamount;
+    [SerializeField] AudioClip bubblePop;
 
     void Awake()
     {
         playerManager = GetComponentInParent<PlayerManager>();
         instance = this;
     }
-
     void Start()
     {
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -31,7 +29,7 @@ public class Bubble : MonoBehaviour
     public void Grow()
     {
         growamount += .00005f;
-        if (growamount <5)
+        if (growamount < 5)
         {
             if (growamount > 2)
             {
@@ -41,16 +39,18 @@ public class Bubble : MonoBehaviour
             {
                 transform.localScale = new Vector3(2, 2, 2);
             }
-        } else
+        }
+        else
         {
             transform.localScale = new Vector3(5, 5, 5);
         }
-       
+
     }
     public void Pop()
     {
         if (bubbleSprite != null)
         {
+            playerManager.soundManager.ChangeSFX(bubblePop);
             bubbleSprite.gameObject.SetActive(false);
             bubbleSprite.localScale = new Vector3(2, 2, 2);
         }

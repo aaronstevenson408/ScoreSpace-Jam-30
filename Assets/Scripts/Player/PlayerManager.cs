@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PlayerManager : MonoBehaviour
 {
     [HideInInspector]
@@ -13,19 +12,19 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D _rb;
     Bubble bubble;
-
     [SerializeField] LeaderboardManager leaderBoard;
-
     [Header("Flags")]
     [HideInInspector]
     public bool playerDead;
     [SerializeField] GameObject playerCamera;
     Collider2D _collider;
-
     [HideInInspector]
-     public float gravityScale = -1;
-     float slowSpeedTimer;
-     float invulnTimer;
+    public float gravityScale = -1;
+    float slowSpeedTimer;
+    float invulnTimer;
+    [SerializeField] AudioClip falling;
+    [HideInInspector]
+    public SoundManager soundManager;
 
     private void Awake()
     {
@@ -37,13 +36,17 @@ public class PlayerManager : MonoBehaviour
         _collider = GetComponent<Collider2D>();
     }
 
+    private void Start()
+    {
+        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
+    }
+
     private void Update()
     {
         if (playerDead)
             return;
         SyncCamera();
     }
-
     void SyncCamera()
     {
         playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y, playerCamera.transform.position.z);
@@ -51,18 +54,18 @@ public class PlayerManager : MonoBehaviour
 
     public void Dead()
     {
+        soundManager.ChangeSFX(falling);
         _rb.gravityScale = 1;
         _collider.enabled = false;
         leaderBoard.SubmitScore(playerScoreManager.finalScore);
         bubble.Pop();
         playerDead = true;
     }
-
     public void Invulnerability(float time)
     {
         invulnTimer = time;
         invulnTimer -= 1;
-        if(invulnTimer > 0)
+        if (invulnTimer > 0)
         {
             _collider.enabled = false;
             bubble.GetComponent<Collider2D>().enabled = false;
@@ -74,33 +77,32 @@ public class PlayerManager : MonoBehaviour
             bubble.GetComponent<Collider2D>().enabled = true;
         }
     }
-    public void SlowSpeed(float time,float amount)
+    public void SlowSpeed(float time, float amount)
     {
         slowSpeedTimer = time;
         slowSpeedTimer -= 1;
         if (slowSpeedTimer > 0)
         {
             _rb.gravityScale = amount;
-
             StartCoroutine(CallSlowSpeed(slowSpeedTimer, amount));
         }
         else
         {
-            if (gravityScale < -1)
+            if (gravityScale < -.1f)
             {
                 _rb.gravityScale = gravityScale;
             }
             else
             {
-                _rb.gravityScale = -1;
+                _rb.gravityScale = -.1f;
             }
-           
+
         }
     }
     IEnumerator CallSlowSpeed(float time, float amount)
     {
         yield return new WaitForSeconds(1);
-            SlowSpeed(time, amount);
+        SlowSpeed(time, amount);
     }
     IEnumerator CallInvuln(float time)
     {

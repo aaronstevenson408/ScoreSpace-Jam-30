@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00357388a1d284b669e15602bf31976e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickup: {fileID: 8300000, guid: 661ebcea4994b40c3b1bffd96f805f6e, type: 3}
   slowAmt: 0.4
   slowTime: 3
 --- !u!58 &2346143050365899518
