@@ -21,6 +21,7 @@ public class WorldManager : MonoBehaviour
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private GameObject playerUICanvas;
+    [SerializeField] private GameObject leaderboardCanvas;
 
 
     [Header("Test")]
@@ -69,6 +70,7 @@ public class WorldManager : MonoBehaviour
         Debug.Log("Game Ended");
         playerUICanvas.SetActive(false);
         gameOverCanvas.SetActive(true);
+        leaderboardCanvas.SetActive(true);
 
         //leader board stuff
         //end screen ui
