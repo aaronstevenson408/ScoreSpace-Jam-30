@@ -929,17 +929,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background: {fileID: 446445632}
   groundLevel:
-    backgroundScenePositionY: 770
+    backgroundScenePositionY: 2556
     yLevelToNewScene: 0
     increaseEnemySpawns: 0.05
     increaseGravity: 0.001
   skyLevel:
-    backgroundScenePositionY: 0
+    backgroundScenePositionY: 1229
     yLevelToNewScene: 50
     increaseEnemySpawns: 0.06
     increaseGravity: 0.003
   spaceLevel:
-    backgroundScenePositionY: -770
+    backgroundScenePositionY: -2556
     yLevelToNewScene: 100
     increaseEnemySpawns: 0.08
     increaseGravity: 0.005
@@ -2038,8 +2038,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 900}
-  m_SizeDelta: {x: 1920, y: 2688}
+  m_AnchoredPosition: {x: 0, y: 2556}
+  m_SizeDelta: {x: 1920, y: 6000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446445633
 MonoBehaviour:
@@ -2061,7 +2061,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fdb6c6df768d95b4cb3ef81d34f051fd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 36cf103211ca2eb459599c3fb0871464, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1824039398815436434}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7379765941376727297}
   - component: {fileID: 6655243015253964094}
   - component: {fileID: 4181738314454014344}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: planeSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3730959991553724037}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 36751683763454428}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane Purple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 1093861963442109913}
   - component: {fileID: 532260356389706962}
   - component: {fileID: 1898166108540217495}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlanePurple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
