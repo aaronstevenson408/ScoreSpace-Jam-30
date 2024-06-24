@@ -11,11 +11,6 @@ public enum GameState { START, RUNNING, END }
 public class WorldManager : MonoBehaviour
 {
     private static WorldManager instance;
-
-    [SerializeField] AudioClip MainMenu;
-    [SerializeField] AudioClip GameMusic;
-    [SerializeField] AudioClip GameOver;
-    SoundManager soundManager;
     public static WorldManager Instance { get { return instance; } }
 
     [Header("Time")]
@@ -35,10 +30,6 @@ public class WorldManager : MonoBehaviour
     private GameState gameState = GameState.START;
     public float timer;
 
-    bool mainMenuMusicisPlayed;
-    bool gameMusicisPlayed;
-    bool gameOverMusicIsPlayed;
-
     public float GetTime
     {
         get { return timer; }
@@ -50,42 +41,14 @@ public class WorldManager : MonoBehaviour
         instance = this;
         timer = startTime;
     }
-    private void Start()
-    {
-        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
-    }
+
     void Update()
     {
         if (canDecreaseTime)
            // DecreaseTime();
         test();
-        ChangeMusic();
     }
 
-public void ChangeMusic()
-    {
-        if(SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            //mainmenu
-            if (!mainMenuMusicisPlayed)
-            {
-                soundManager.ChangeMusic(MainMenu);
-                mainMenuMusicisPlayed = true;
-            }
-
-        }
-        
-        if(SceneManager.GetActiveScene().buildIndex == 1 &&gameState != GameState.END)
-        {
-            //Game is running and not dead
-            if (!gameMusicisPlayed)
-            {
-                soundManager.ChangeMusic(GameMusic);
-                gameMusicisPlayed = true;
-            }
-
-        }
-    }
     public void DecreaseTime()
     {
         timer -= Time.deltaTime;
@@ -104,12 +67,6 @@ public void ChangeMusic()
     public void End()
     {
         gameState = GameState.END;
-        if (!gameOverMusicIsPlayed)
-        {
-            soundManager.ChangeMusic(GameOver);
-            gameOverMusicIsPlayed = true;
-        }
-
         Debug.Log("Game Ended");
         playerUICanvas.SetActive(false);
         gameOverCanvas.SetActive(true);

@@ -28,7 +28,6 @@ public class SoundManager : MonoBehaviour
     }
     public void ChangeMusic(AudioClip clip)
     {
-        Music.Stop();
         Music.loop = true;
         Music.PlayOneShot(clip);
     }
@@ -43,7 +42,6 @@ public class SoundManager : MonoBehaviour
     }
     public void MusicVolume(float value)
     {
-
         Music.volume = value/100;
     }
 }
