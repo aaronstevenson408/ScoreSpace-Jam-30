@@ -389,7 +389,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143851608}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a36e3095d8ab145499709d17fc2f7a89, type: 3}
   m_Name: 
@@ -447,13 +447,21 @@ MonoBehaviour:
   groundLevel:
     backgroundScenePositionY: 770
     yLevelToNewScene: 0
+    increaseEnemySpawns: 0.2
+    increaseItemSpawns: 0.01
   skyLevel:
     backgroundScenePositionY: 0
     yLevelToNewScene: 30
+    increaseEnemySpawns: 0.2
+    increaseItemSpawns: 0
   SpaceLevel:
     backgroundScenePositionY: -770
     yLevelToNewScene: 50
+    increaseEnemySpawns: 0
+    increaseItemSpawns: 0
   speed: 0.5
+  distForSceneChange: 100
+  dynamicSceneYlevel: 60
 --- !u!1 &200298416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,9 +2202,6 @@ MonoBehaviour:
   leaderBoard: {fileID: 365602823}
   playerDead: 0
   playerCamera: {fileID: 652179231}
-  gravityScale: 0
-  slowSpeedTimer: 0
-  invulnTimer: 0
 --- !u!114 &1469931287
 MonoBehaviour:
   m_ObjectHideFlags: 0

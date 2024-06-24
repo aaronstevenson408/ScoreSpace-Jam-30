@@ -9,8 +9,15 @@ public class SceneChangery : MonoBehaviour
     public changeScenery groundLevel;
     public changeScenery skyLevel;
     public changeScenery SpaceLevel;
+
     GameManager gameManager;
     public float speed;
+
+    public float distForSceneChange;
+     public float dynamicSceneYlevel;
+    bool isUsingdynamicSceneChange;
+
+    bool valueChanged;
     private void Awake()
     {
         gameManager = GetComponent<GameManager>();
@@ -24,27 +31,83 @@ public class SceneChangery : MonoBehaviour
 
     public void StageChange()
     {
-         if (gameManager.isInFloorStage)
+        if (!isUsingdynamicSceneChange)
         {
-            background.anchoredPosition = new Vector3(background.anchoredPosition.x, groundLevel.backgroundScenePositionY);
+            if (gameManager.isInFloorStage)
+            {
+                background.anchoredPosition = new Vector3(background.anchoredPosition.x, groundLevel.backgroundScenePositionY);
+                if (!valueChanged)
+                {
+                    gameManager.enemySpawnRate -= groundLevel.increaseEnemySpawns;
+                    valueChanged =true;
+                }
 
-            if (gameManager.player.transform.position.y > skyLevel.yLevelToNewScene && gameManager.player.transform.position.y < SpaceLevel.yLevelToNewScene)
+
+                if (gameManager.player.transform.position.y > skyLevel.yLevelToNewScene && gameManager.player.transform.position.y < SpaceLevel.yLevelToNewScene)
+                {
+                    valueChanged = false;
+                    CurrentStage(false, true, false);
+                }
+            }
+            if (gameManager.isInSkyStage)
             {
-                CurrentStage(false, true, false);
+                background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, skyLevel.backgroundScenePositionY), speed / 100);
+                if (!valueChanged)
+                {
+                    gameManager.enemySpawnRate -= skyLevel.increaseEnemySpawns;
+                    valueChanged = true;
+                }
+                if (gameManager.player.transform.position.y > SpaceLevel.yLevelToNewScene)
+                {
+                    valueChanged = false;
+                    CurrentStage(false, false, true);
+                }
+            }
+            if (gameManager.isInSpaceStage)
+            {
+                Debug.Log("Is in Space");
+                background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, SpaceLevel.backgroundScenePositionY), speed / 100);
+                if (!valueChanged)
+                {
+                    gameManager.enemySpawnRate -= SpaceLevel.increaseEnemySpawns;
+                    valueChanged = true;
+                }
+                if (gameManager.player.transform.position.y > SpaceLevel.yLevelToNewScene + ((SpaceLevel.yLevelToNewScene + SpaceLevel.yLevelToNewScene) / 2))
+                {
+                    dynamicSceneYlevel = SpaceLevel.yLevelToNewScene + ((SpaceLevel.yLevelToNewScene + SpaceLevel.yLevelToNewScene) / 2);
+                    valueChanged = false;
+                    isUsingdynamicSceneChange = true;
+                }
             }
         }
-         if (gameManager.isInSkyStage)
+        else
         {
-            background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, skyLevel.backgroundScenePositionY), speed/100);
-            if (gameManager.player.transform.position.y > SpaceLevel.yLevelToNewScene)
+            if((transform.position.y - dynamicSceneYlevel) >= distForSceneChange)
             {
-                CurrentStage(false, false, true);
+                if (gameManager.isInSpaceStage)
+                {
+                    background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, skyLevel.backgroundScenePositionY), speed / 100);
+                    valueChanged = false;
+                    gameManager.isInSkyStage = true;
+                    gameManager.isInSpaceStage = false;
+                   
+                } else if (gameManager.isInSkyStage)
+                {
+                    background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, SpaceLevel.backgroundScenePositionY), speed / 100);
+
+                    gameManager.isInSkyStage = false;
+                    gameManager.isInSpaceStage = true;
+                    valueChanged = false;
+                }
+                dynamicSceneYlevel = transform.position.y;
+                if (!valueChanged)
+                {
+                    gameManager.enemySpawnRate -= .05f;
+                    valueChanged = true;
+                }
             }
-        }  if (gameManager.isInSpaceStage)
-        {
-            Debug.Log("Is in Space");
-            background.anchoredPosition = Vector3.Lerp(background.anchoredPosition, new Vector3(background.anchoredPosition.x, SpaceLevel.backgroundScenePositionY), speed/100);
         }
+        
     }
 
 
@@ -60,4 +123,6 @@ public class changeScenery
 {
     public float backgroundScenePositionY;
     public float yLevelToNewScene;
+    public float increaseEnemySpawns;
+    public float increaseItemSpawns;
 }

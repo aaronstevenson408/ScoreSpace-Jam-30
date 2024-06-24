@@ -10,11 +10,7 @@ public class Bubble : MonoBehaviour
     private static Bubble instance;
     public static Bubble Instance { get { return instance; } }
     [SerializeField] private Transform bubbleSprite;
-
-    float timer;
-
-    [Header("Test")]
-     float growamount;
+      float growamount;
 
     void Awake()
     {
@@ -30,7 +26,6 @@ public class Bubble : MonoBehaviour
     void Update()
     {
         Grow();
-        timer += Time.deltaTime;
         //bubble grows in size based on time
     }
     public void Grow()

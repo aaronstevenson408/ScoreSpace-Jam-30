@@ -144,7 +144,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &3208997753992313359
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -221,6 +221,8 @@ MonoBehaviour:
   isAtPointA: 0
   dropPoint: {fileID: 0}
   _gravity: 0
+  verticalMovement: 0
+  horizontalMovement: 0
   glideUp: 0
   glideDown: 0
   spawnPoint: {fileID: 0}
